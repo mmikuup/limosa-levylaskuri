@@ -1,0 +1,690 @@
+import { useState } from "react";
+import emailjs from "@emailjs/browser";
+
+function App() {
+  const [product, setProduct] = useState(
+    "Kosteudenkestävä melamiini P3 16 mm"
+  );
+
+  const [height, setHeight] = useState("");
+  const [width, setWidth] = useState("");
+  const [quantity, setQuantity] = useState(1);
+
+  const [leftEdge, setLeftEdge] = useState(false);
+  const [rightEdge, setRightEdge] = useState(false);
+  const [topEdge, setTopEdge] = useState(false);
+  const [bottomEdge, setBottomEdge] = useState(false);
+
+  const [orderLines, setOrderLines] = useState([]);
+  const [customerName, setCustomerName] =
+  useState("");
+
+const [phone, setPhone] =
+  useState("");
+
+const [email, setEmail] =
+  useState("");
+
+const [company, setCompany] =
+  useState("");
+
+const [notes, setNotes] =
+  useState("");
+  const [successMessage, setSuccessMessage] =
+  useState("");
+``
+const products = [
+  {
+    name: "Kosteudenkestävä melamiini P3 16 mm",
+    pricePerM2: 36,
+    minHeight: 250,
+    maxHeight: 2750,
+    minWidth: 70,
+    maxWidth: 2000,
+  },
+  {
+    name: "Kosteudenkestävä melamiini P3 18 mm",
+    pricePerM2: 50,
+    minHeight: 250,
+    maxHeight: 2750,
+    minWidth: 70,
+    maxWidth: 2000,
+  },
+];
+const selectedProduct = products.find(
+(p) => p.name === product
+);
+  const edgePricePerM = 4;
+  const minimumPrice = 10;
+
+  const area =
+    ((Number(height) || 0) *
+      (Number(width) || 0)) /
+    1000000;
+
+  const boardPrice =
+  area * selectedProduct.pricePerM2;
+
+  let edgeLength = 0;
+
+  if (leftEdge) edgeLength += Number(height) || 0;
+  if (rightEdge) edgeLength += Number(height) || 0;
+  if (topEdge) edgeLength += Number(width) || 0;
+  if (bottomEdge) edgeLength += Number(width) || 0;
+
+  const edgePrice =
+    (edgeLength / 1000) *
+    edgePricePerM;
+
+  const calculatedPrice =
+    boardPrice + edgePrice;
+
+  const piecePrice = Math.max(
+    calculatedPrice,
+    minimumPrice
+  );
+
+  const totalPrice =
+    piecePrice * quantity;
+function addToOrder() {
+
+  if (
+    Number(height) < 250 ||
+    Number(height) > 2750
+  ) {
+    alert(
+      "Korkeuden tulee olla välillä 250-2750 mm"
+    );
+    return;
+  }
+
+  if (
+    Number(width) < 70 ||
+    Number(width) > 2000
+  ) {
+    alert(
+      "Leveyden tulee olla välillä 70-2000 mm"
+    );
+    return
+}
+  const item = {
+    product,
+    height,
+    width,
+    quantity: Number(quantity),
+    leftEdge,
+    rightEdge,
+    topEdge,
+    bottomEdge,
+    totalPrice,
+  };
+
+  setOrderLines([...orderLines, item]);
+
+  setHeight("");
+  setWidth("");
+  setQuantity(1);
+
+  setLeftEdge(false);
+  setRightEdge(false);
+  setTopEdge(false);
+  setBottomEdge(false);
+}
+
+const grandTotal = orderLines.reduce(
+  (sum, item) => sum + item.totalPrice,
+  0
+  );
+  const vat = grandTotal * 0.255;
+const totalWithVat = grandTotal + vat;
+function submitQuoteRequest() {
+
+  if (orderLines.length === 0) {
+    alert("Lisää vähintään yksi tuote tilaukseen.");
+    return;
+  }
+
+  if (!customerName.trim()) {
+    alert("Anna nimi.");
+    return;
+  }
+
+  if (phone.length < 8) {
+alert("Anna kelvollinen puhelinnumero.");
+return;
+}
+
+  const emailRegex =
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!emailRegex.test(email)) {
+    alert(
+      "Anna kelvollinen sähköpostiosoite."
+    );
+    return;
+  }
+
+
+  const productsText = orderLines
+    .map(
+      (item) =>
+        `${item.product}
+${item.height} x ${item.width} mm
+Kpl: ${item.quantity}`
+    )
+    .join("\n\n");
+
+  const templateParams = {
+    customer_name: customerName,
+    phone,
+    email,
+    company,
+    notes,
+
+    products: productsText,
+
+    subtotal: grandTotal.toFixed(2),
+    vat: vat.toFixed(2),
+    total: totalWithVat.toFixed(2),
+  };
+
+  emailjs
+    .send(
+      "service_zvn47vw",
+      "template_fmksnxd",
+      templateParams,
+      "LVqGpwPw31yr_emH4"
+    )
+    .then(() => {
+
+  setOrderLines([]);
+
+  setHeight("");
+  setWidth("");
+  setQuantity(1);
+
+  setLeftEdge(false);
+  setRightEdge(false);
+  setTopEdge(false);
+  setBottomEdge(false);
+
+  setCustomerName("");
+  setPhone("");
+  setEmail("");
+  setCompany("");
+  setNotes("");
+
+  setSuccessMessage(
+"✅ Kiitos tilauksesta! Tilauksesi on vastaanotettu. Ilmoitamme tekstiviestillä, kun tilaus on noudettavissa."
+);
+
+setTimeout(() => {
+  setSuccessMessage("");
+}, 5000);
+})
+    .catch((error) => {
+      console.error(error);
+
+      alert(
+        "Tilauksen lähetys epäonnistui."
+      );
+    });
+}
+return (
+  <div
+    style={{
+      maxWidth: "800px",
+      margin: "40px auto",
+      padding: "30px",
+      backgroundColor: "#ffffff",
+      borderRadius: "12px",
+      boxShadow: "0 4px 15px rgba(0,0,0,0.1)",
+      fontFamily: "Arial, sans-serif",
+    }}
+  >
+  <h1
+  style={{
+    color: "#ff6b00",
+    marginBottom: "30px",
+  }}
+>
+  Limosa-Keittiöiden levylaskuri
+</h1>
+<p
+style={{
+textAlign: "center",
+color: "#666",
+fontSize: "20px",
+marginTop: "-10px",
+marginBottom: "30px",
+}}
+>
+Tilaa mittatarkat kalustelevyt helposti suoraan verkosta. Valmistus 1-4 arkipäivässä.
+</p>
+      <h3>Tuote</h3>
+
+      <select
+  value={product}
+  onChange={(e) =>
+    setProduct(e.target.value)
+  }
+  style={{
+    width: "100%",
+    padding: "12px",
+    borderRadius: "8px",
+    border: "1px solid #ccc",
+    boxSizing: "border-box",
+    fontSize: "16px",
+    fontWeight: "500",
+  }}
+>
+  {products.map((item) => (
+    <option
+      key={item.name}
+      value={item.name}
+    >
+      {item.name}
+    </option>
+  ))}
+</select>
+<div
+  style={{
+    display: "grid",
+gridTemplateColumns: "1fr 1fr 120px",
+gap: "15px",
+alignItems: "end",
+  }}
+><div>
+  <h3>Korkeus (mm)</h3>
+
+  <input
+    type="number"
+    min="250"
+    max="2750"
+    value={height}
+    onChange={(e) =>
+      setHeight(e.target.value)
+    }
+    style={{
+      width: "100%",
+      padding: "12px",
+      borderRadius: "8px",
+      border: "1px solid #ccc",
+      boxSizing: "border-box",
+    }}
+  />
+</div>
+
+      <div>
+  <h3>Leveys (mm)</h3>
+
+  <input
+    type="number"
+    min="70"
+    max="2000"
+    value={width}
+    onChange={(e) =>
+      setWidth(e.target.value)
+    }
+    style={{
+      width: "100%",
+      padding: "12px",
+      borderRadius: "8px",
+      border: "1px solid #ccc",
+      boxSizing: "border-box",
+    }}
+  />
+</div>
+<div>
+  <h3>Määrä (kpl)</h3>
+
+  <input
+    type="number"
+    min="1"
+    value={quantity}
+    onChange={(e) =>
+      setQuantity(e.target.value)
+    }
+    style={{
+      width: "100%",
+      padding: "12px",
+      borderRadius: "8px",
+      border: "1px solid #ccc",
+      boxSizing: "border-box",
+    }}
+  />
+</div>
+
+</div>
+
+      <h3>Reunanauhoitukset</h3>
+
+      <div
+  style={{
+    display: "grid",
+    gridTemplateColumns: "1fr 1fr",
+    gap: "10px",
+    maxWidth: "300px",
+    margin: "0 auto",
+  }}
+>
+  <label>
+    <input
+      type="checkbox"
+      checked={leftEdge}
+      onChange={(e) =>
+        setLeftEdge(e.target.checked)
+      }
+    />
+    {" "}Vasen sivu (korkeus)
+  </label>
+
+  <label>
+    <input
+      type="checkbox"
+      checked={rightEdge}
+      onChange={(e) =>
+        setRightEdge(e.target.checked)
+      }
+    />
+    {" "}Oikea sivu (korkeus)
+  </label>
+
+  <label>
+    <input
+      type="checkbox"
+      checked={topEdge}
+      onChange={(e) =>
+        setTopEdge(e.target.checked)
+      }
+    />
+    {" "}Yläreuna (leveys)
+  </label>
+
+  <label>
+    <input
+      type="checkbox"
+      checked={bottomEdge}
+      onChange={(e) =>
+        setBottomEdge(e.target.checked)
+      }
+    />
+    {" "}Alareuna (leveys)
+  </label>
+</div>
+
+      <hr />
+
+      <div
+  style={{
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  gap: "35px",
+  padding: "15px",
+  backgroundColor: "#fff7f0",
+  borderRadius: "10px",
+  marginTop: "15px",
+  marginBottom: "15px",
+}}
+>
+  <h2
+  style={{
+    margin: 0,
+    color: "#ff6b00",
+    fontSize: "20px",
+    fontWeight: "bold",
+  }}
+>
+  {height && width && quantity
+    ? `${totalPrice.toFixed(2)} €`
+    : "Syötä mitat ja määrä"}
+</h2>
+
+  <button
+    onClick={addToOrder}
+    style={{
+      backgroundColor: "#ff6b00",
+      color: "white",
+      border: "none",
+      padding: "12px 20px",
+      borderRadius: "8px",
+      cursor: "pointer",
+      fontSize: "16px",
+      fontWeight: "bold",
+    }}
+  >
+    Lisää tilaukseen
+  </button>
+</div>
+<hr />
+
+{orderLines.length > 0 && (
+  <>
+  <h2>Tilauksen yhteenveto</h2>
+
+{orderLines.map((item, index) => (
+
+  <div
+    key={index}
+    style={{
+      borderLeft: "5px solid #ff6b00",
+      backgroundColor: "#f8f8f8",
+      padding: "16px",
+      marginTop: "12px",
+      borderRadius: "10px",
+      boxShadow: "0 2px 5px rgba(0,0,0,0.05)",
+    }}
+  >
+``
+      <p>
+        <strong>{item.product}</strong>
+      </p>
+
+      <p>
+        {item.height} x {item.width} mm
+      </p>
+
+      <p>
+        Kpl: {item.quantity}
+      </p>
+
+      <p>
+        Reunanauhat:
+        {[
+          item.leftEdge && "Vasen",
+          item.rightEdge && "Oikea",
+          item.topEdge && "Ylä",
+          item.bottomEdge && "Ala",
+        ]
+          .filter(Boolean)
+          .join(", ")}
+      </p>
+
+      <p>
+        Hinta: {item.totalPrice.toFixed(2)} €
+      </p>
+
+     <button
+onClick={() =>
+setOrderLines(
+orderLines.filter(
+(_, i) => i !== index
+)
+)
+}
+>
+Poista
+</button>
+ 
+</div>
+))}
+</>
+)}
+<div
+  style={{
+    display: orderLines.length > 0 ? "block" : "none",
+  }}
+>
+
+      <hr />
+      <div
+        style={{
+          marginTop: "20px",
+          padding: "20px",
+          backgroundColor: "#fff3e8",
+          borderRadius: "10px",
+        }}
+      >
+        <h3>
+          Veroton hinta: {grandTotal.toFixed(2)} €
+        </h3>
+
+        <h3>
+          ALV 25,5 %:
+          {" "}
+          {vat.toFixed(2)} €
+        </h3>
+
+        <h2>
+        Yhteensä: {totalWithVat.toFixed(2)} €
+      </h2>
+      <hr />
+<div
+  style={{
+    backgroundColor: "#eef6ff",
+    border: "1px solid #b6d4fe",
+    padding: "15px",
+    borderRadius: "8px",
+    marginBottom: "20px",
+    color: "#345692",
+  }}
+>
+  <strong>📦 Toimitustavat</strong>
+
+  <p style={{ marginTop: "10px" }}>
+    1.Tilaukset noudetaan Limosa-Keittiöiden
+    tehtaalta Limingasta. Selvitämme parhaillaan muita toimitusvaihtoehtoja.
+  </p>
+
+  <p>
+    2.Ilmoitamme tekstiviestillä, kun tilauksesi
+    on valmis noudettavaksi.
+  </p>
+</div>
+</div>
+<h2>Asiakkaan tiedot</h2>
+
+<input
+  type="text"
+  placeholder="Nimi"
+  value={customerName}
+  onChange={(e) =>
+    setCustomerName(e.target.value)
+  }
+  style={{
+    width: "100%",
+    padding: "12px",
+    marginBottom: "10px",
+    boxSizing: "border-box",
+  }}
+/>
+
+<input
+  type="text"
+  placeholder="Puhelin"
+  value={phone}
+  onChange={(e) =>
+    setPhone(e.target.value)
+  }
+  style={{
+    width: "100%",
+    padding: "12px",
+    marginBottom: "10px",
+    boxSizing: "border-box",
+  }}
+/>
+
+<input
+  type="email"
+  placeholder="Sähköposti"
+  value={email}
+  onChange={(e) =>
+    setEmail(e.target.value)
+  }
+  style={{
+    width: "100%",
+    padding: "12px",
+    marginBottom: "10px",
+    boxSizing: "border-box",
+  }}
+/>
+
+<input
+  type="text"
+  placeholder="Yritys (valinnainen)"
+  value={company}
+  onChange={(e) =>
+    setCompany(e.target.value)
+  }
+  style={{
+    width: "100%",
+    padding: "12px",
+    marginBottom: "10px",
+    boxSizing: "border-box",
+  }}
+/>
+
+<textarea
+  placeholder="Lisätiedot (valinnainen)"
+  value={notes}
+  onChange={(e) =>
+    setNotes(e.target.value)
+  }
+  style={{
+    width: "100%",
+    minHeight: "70px",
+    padding: "12px",
+    boxSizing: "border-box",
+  }}
+/>
+<br />
+<br />
+{successMessage && (
+<div
+style={{
+backgroundColor: "#e8f5e9",
+color: "#2e7d32",
+border: "1px solid #4caf50",
+padding: "15px",
+borderRadius: "8px",
+marginBottom: "20px",
+fontWeight: "bold",
+}}
+>
+{successMessage}
+</div>
+)}
+<button
+  onClick={submitQuoteRequest}
+  style={{
+    backgroundColor: "#ff6b00",
+    color: "white",
+    border: "none",
+    padding: "14px 30px",
+    borderRadius: "8px",
+    cursor: "pointer",
+    fontSize: "16px",
+    fontWeight: "bold",
+  }}
+>
+  Lähetä tilaus
+</button>
+
+</div>
+</div>
+
+);
+}
+
+export default App;
