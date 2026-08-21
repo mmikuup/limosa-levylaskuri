@@ -652,18 +652,21 @@ Poista
 <br />
 {successMessage && (
 <div
-style={{
-backgroundColor: "#e8f5e9",
-color: "#2e7d32",
-border: "1px solid #4caf50",
-padding: "15px",
-borderRadius: "8px",
-marginBottom: "20px",
-fontWeight: "bold",
-}}
+  style={{
+    backgroundColor: "#f8f9fa",
+    border: "1px solid #dee2e6",
+    borderRadius: "8px",
+    padding: "12px",
+    marginBottom: "20px",
+    fontSize: "14px",
+    color: "#555",
+  }}
 >
-{successMessage}
+  ✅ Tilauksia käsitellään luottamuksellisesti.
+  <br />
+  ✅ Tietoja käytetään ainoastaan tilauksen käsittelyyn.
 </div>
+
 )}
 <button
   onClick={submitQuoteRequest}
