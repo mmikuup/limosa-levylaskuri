@@ -223,12 +223,12 @@ Reunanauhat: ${edges || "Ei reunanauhoja"}`;
   setNotes("");
 
   setSuccessMessage(
-"✅ Kiitos tilauksesta! Tilauksesi on vastaanotettu. Ilmoitamme tekstiviestillä, kun tilaus on noudettavissa."
+  "✅ Kiitos tilauksesta! Tilauksesi on vastaanotettu. Ilmoitamme tekstiviestillä, kun tilaus on noudettavissa."
 );
-window.scrollTo({
-  top: 0,
-  behavior: "smooth",
-});
+
+setTimeout(() => {
+  window.scrollTo(0, 0);
+}, 100);
 
 setTimeout(() => {
   setSuccessMessage("");
