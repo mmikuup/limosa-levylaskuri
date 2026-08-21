@@ -227,7 +227,12 @@ Reunanauhat: ${edges || "Ei reunanauhoja"}`;
 );
 
 setTimeout(() => {
-  window.scrollTo(0, 0);
+  document
+    .getElementById("success-message")
+    ?.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+    });
 }, 100);
 
 setTimeout(() => {
@@ -264,6 +269,7 @@ return (
 </h1>
 {successMessage && (
   <div
+    id="success-message"
     style={{
       backgroundColor: "#e8f5e9",
       color: "#2e7d32",
