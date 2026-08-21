@@ -30,8 +30,7 @@ const [company, setCompany] =
 
 const [notes, setNotes] =
   useState("");
-  const [successMessage, setSuccessMessage] =
-  useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 ``
 const products = [
   {
@@ -166,13 +165,22 @@ return;
 
 
   const productsText = orderLines
-    .map(
-      (item) =>
-        `${item.product}
+  .map((item) => {
+    const edges = [
+      item.leftEdge && "Vasen sivu (korkeus",
+      item.rightEdge && "Oikea sivu (korkeus)",
+      item.topEdge && "Yläreuna (leveys",
+      item.bottomEdge && "Alareuna (leveys",
+    ]
+      .filter(Boolean)
+      .join(", ");
+
+    return `${item.product}
 ${item.height} x ${item.width} mm
-Kpl: ${item.quantity}`
-    )
-    .join("\n\n");
+Kpl: ${item.quantity}
+Reunanauhat: ${edges || "Ei reunanauhoja"}`;
+  })
+  .join("\n\n");
 
   const templateParams = {
     customer_name: customerName,
@@ -250,6 +258,22 @@ return (
 >
   Limosa-Keittiöiden levylaskuri
 </h1>
+{successMessage && (
+  <div
+    style={{
+      backgroundColor: "#e8f5e9",
+      color: "#2e7d32",
+      border: "1px solid #4caf50",
+      padding: "15px",
+      borderRadius: "8px",
+      marginBottom: "20px",
+      fontWeight: "bold",
+      textAlign: "center",
+    }}
+  >
+    {successMessage}
+  </div>
+)}
 <p
 style={{
 textAlign: "center",
@@ -662,12 +686,12 @@ Poista
     color: "#555",
   }}
 >
-  ✅ Tilauksia käsitellään luottamuksellisesti.
-  <br />
-  ✅ Tietoja käytetään ainoastaan tilauksen käsittelyyn.
 </div>
 
 )}
+
+  <p>Annettuja tietoja käytetään ainoastaan tilauksen käsittelyyn. </p>
+  
 <button
   onClick={submitQuoteRequest}
   style={{
@@ -679,6 +703,7 @@ Poista
     cursor: "pointer",
     fontSize: "16px",
     fontWeight: "bold",
+    marginTop: "20px",
   }}
 >
   Lähetä tilaus
