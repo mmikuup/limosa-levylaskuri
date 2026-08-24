@@ -216,6 +216,14 @@ Reunanauhat: ${edges || "Ei reunanauhoja"}`;
     )
     .then(() => {
 
+      // Lähetetään tilausvahvistus asiakkaalle
+emailjs.send(
+"service_zvn47vw",
+"template_yjjeg3k",
+templateParams,
+"LVqGpwPw31yr_emH4"
+);
+
   setOrderLines([]);
 
   setHeight("");
