@@ -1,5 +1,6 @@
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
+import melamiinip3 from "./assets/melamiinip3.jpg";
 
 function App() {
   const [product, setProduct] = useState(
@@ -35,26 +36,30 @@ const [notes, setNotes] =
 const products = [
   {
     name: "Kosteudenkestävä melamiini P3 16 mm",
+    shortName: "Melamiini P3 16mm",
     pricePerM2: 36,
     minHeight: 250,
     maxHeight: 2750,
     minWidth: 70,
     maxWidth: 2000,
+    image: melamiinip3,
   },
   {
     name: "Kosteudenkestävä melamiini P3 18 mm",
+    shortName: "Melamiini P3 18mm",
     pricePerM2: 50,
     minHeight: 250,
     maxHeight: 2750,
     minWidth: 70,
     maxWidth: 2000,
+    image: melamiinip3,
   },
 ];
 const selectedProduct = products.find(
 (p) => p.name === product
 );
   const edgePricePerM = 4;
-  const minimumPrice = 10;
+  const minimumPrice = 16;
 
   const area =
     ((Number(height) || 0) *
@@ -136,7 +141,12 @@ const grandTotal = orderLines.reduce(
   );
   const vat = grandTotal * 0.255;
 const totalWithVat = grandTotal + vat;
+
 function submitQuoteRequest() {
+
+  const orderNumber = `LK-${new Date().getFullYear()}-${Date.now()
+  .toString()
+  .slice(-5)}`;
 
   if (orderLines.length === 0) {
     alert("Lisää vähintään yksi tuote tilaukseen.");
@@ -183,6 +193,7 @@ Reunanauhat: ${edges || "Ei reunanauhoja"}`;
   .join("\n\n");
 
   const templateParams = {
+    order_number: orderNumber,
     customer_name: customerName,
     phone,
     email,
@@ -223,7 +234,11 @@ Reunanauhat: ${edges || "Ei reunanauhoja"}`;
   setNotes("");
 
   setSuccessMessage(
-  "✅ Kiitos tilauksesta! Tilauksesi on vastaanotettu. Ilmoitamme tekstiviestillä, kun tilaus on noudettavissa."
+  `✅ Kiitos tilauksesta!
+
+Tilausnumero: ${orderNumber}
+
+Tilauksesi on vastaanotettu onnistuneesti. Ilmoitamme tekstiviestillä, kun tilauksesi on noudettavissa.`
 );
 
 setTimeout(() => {
@@ -295,6 +310,46 @@ marginBottom: "30px",
 >
 Tilaa mittatarkat kalustelevyt helposti suoraan verkosta. Valmistus 1-4 arkipäivässä.
 </p>
+{selectedProduct?.image && (
+  <div
+  style={{
+    textAlign: "center",
+    marginTop: "15px",
+    marginBottom: "20px",
+  }}
+>
+  <div
+    style={{
+      position: "relative",
+      display: "inline-block",
+    }}
+  >
+    <img
+      src={selectedProduct.image}
+      alt={selectedProduct.name}
+      style={{
+        width: "100%",
+        maxWidth: "350px",
+        height: "auto",
+        borderRadius: "10px",
+        boxShadow: "0 4px 10px rgba(0,0,0,0.15)",
+        display: "block",
+      }}
+    />
+
+    <div
+      style={{
+        position: "absolute",
+        bottom: 0,
+     tomLeftRadius: "10px",
+        borderBottomRightRadius: "10px",
+      }}
+    >
+      {selectedProduct.shortName || selectedProduct.name}
+    </div>
+  </div>
+</div>
+)}
       <h3>Tuote</h3>
 
       <select
@@ -495,22 +550,58 @@ alignItems: "end",
 
 {orderLines.length > 0 && (
   <>
-  <h2>Tilauksen yhteenveto</h2>
+  <h2
+  style={{
+    color: "#ff6b00",
+    fontWeight: "bold",
+  }}
+>
+  Tilauksen yhteenveto
+</h2>
 
-{orderLines.map((item, index) => (
+{orderLines.map((item, index) => {
 
-  <div
-    key={index}
+  const productInfo = products.find(
+    (p) => p.name === item.product
+  );
+
+  return (
+
+    <div
+      key={index}
+      style={{
+        borderLeft: "5px solid #ff6b00",
+        backgroundColor: "#f8f8f8",
+        padding: "16px",
+        marginTop: "12px",
+        borderRadius: "10px",
+        boxShadow: "0 2px 5px rgba(0,0,0,0.05)",
+      }}
+    >
+<div
+  style={{
+    display: "flex",
+    alignItems: "flex-start",
+    gap: "15px",
+  }}
+>
+  {productInfo?.image && (
+  <img
+    src={productInfo.image}
+    alt={productInfo.name}
     style={{
-      borderLeft: "5px solid #ff6b00",
-      backgroundColor: "#f8f8f8",
-      padding: "16px",
-      marginTop: "12px",
-      borderRadius: "10px",
-      boxShadow: "0 2px 5px rgba(0,0,0,0.05)",
-    }}
-  >
-``
+      width: "150px",
+      height: "150px",
+      objectFit: "cover",
+        borderRadius: "8px",
+}}
+/>
+)}
+
+<div style={{ 
+  flex: 1,
+  textAlign: "left",
+}}>
       <p>
         <strong>{item.product}</strong>
       </p>
@@ -550,11 +641,16 @@ orderLines.filter(
 >
 Poista
 </button>
- 
+        </div>
 </div>
-))}
+</div>
+
+  );
+})}
+
 </>
 )}
+
 <div
   style={{
     display: orderLines.length > 0 ? "block" : "none",
@@ -580,9 +676,15 @@ Poista
           {vat.toFixed(2)} €
         </h3>
 
-        <h2>
-        Yhteensä: {totalWithVat.toFixed(2)} €
-      </h2>
+        <h2
+  style={{
+    color: "#000000",
+    fontWeight: "bold",
+    fontSize: "30px",
+  }}
+>
+  Yhteensä: {totalWithVat.toFixed(2)} €
+</h2>
       <hr />
 <div
   style={{
@@ -607,7 +709,15 @@ Poista
   </p>
 </div>
 </div>
-<h2>Asiakkaan tiedot</h2>
+
+<h2
+  style={{
+    color: "#ff6b00",
+    fontWeight: "bold",
+  }}
+>
+  Asiakkaan tiedot
+</h2>
 
 <input
   type="text"
@@ -703,6 +813,7 @@ Poista
   <p>Annettuja tietoja käytetään ainoastaan tilauksen käsittelyyn. </p>
   
 <button
+
   onClick={submitQuoteRequest}
   style={{
     backgroundColor: "#ff6b00",
