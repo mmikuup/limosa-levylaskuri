@@ -263,12 +263,15 @@ setTimeout(() => {
     });
 }
 return (
+
   <div
     style={{
       maxWidth: "800px",
       margin: "40px auto",
       padding: "30px",
       backgroundColor: "#ffffff",
+      width: "100%",
+      boxSizing: "border-box",
       borderRadius: "12px",
       boxShadow: "0 4px 15px rgba(0,0,0,0.1)",
       fontFamily: "Arial, sans-serif",
@@ -564,7 +567,6 @@ alignItems: "end",
   const productInfo = products.find(
     (p) => p.name === item.product
   );
-
   return (
 
     <div
@@ -583,6 +585,7 @@ alignItems: "end",
     display: "flex",
     alignItems: "flex-start",
     gap: "15px",
+    flexWrap: "wrap",
   }}
 >
   {productInfo?.image && (
@@ -590,18 +593,22 @@ alignItems: "end",
     src={productInfo.image}
     alt={productInfo.name}
     style={{
-      width: "150px",
-      height: "150px",
+      width: "100px",
+      height: "100px",
       objectFit: "cover",
         borderRadius: "8px",
 }}
 />
 )}
 
-<div style={{ 
-  flex: 1,
-  textAlign: "left",
-}}>
+<div
+  style={{
+    flex: 1,
+    textAlign: "left",
+    minWidth: 0,
+    overflowWrap: "break-word",
+  }}
+>
       <p>
         <strong>{item.product}</strong>
       </p>
@@ -644,10 +651,8 @@ Poista
         </div>
 </div>
 </div>
-
   );
 })}
-
 </>
 )}
 
