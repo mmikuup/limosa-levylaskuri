@@ -363,7 +363,7 @@ Tilaa mittatarkat kalustelevyt helposti suoraan verkosta. Valmistus 1-4 arkipäi
   style={{
     width: "100%",
     padding: "12px",
-    borderRadius: "8px",
+    borderRadius: "5px",
     border: "1px solid #ccc",
     boxSizing: "border-box",
     fontSize: "16px",
@@ -593,8 +593,8 @@ alignItems: "end",
     src={productInfo.image}
     alt={productInfo.name}
     style={{
-      width: "100px",
-      height: "100px",
+      width: "80px",
+      height: "80px",
       objectFit: "cover",
         borderRadius: "5px",
 }}
@@ -605,7 +605,7 @@ alignItems: "end",
   style={{
     flex: 1,
     textAlign: "left",
-    minWidth: 0,
+    minWidth: 180,
     overflowWrap: "break-word",
   }}
 >
