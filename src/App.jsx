@@ -281,7 +281,7 @@ return (
   style={{
     color: "#ff6b00",
     textAlign: "center",
-    fontSize: "36px",
+    fontSize: "32px",
     lineHeight: "1",
   }}
 >
