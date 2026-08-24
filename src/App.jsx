@@ -289,12 +289,11 @@ return (
   style={{
     color: "#ff6b00",
     textAlign: "center",
-    fontSize: "32px",
+    fontSize: "clamp(32px, 4vw, 42px)",
     lineHeight: "1",
   }}
 >
-  Limosa-Keittiöiden
-  <br />
+  Limosa-Keittiöiden<br />
   levylaskuri
 </h1>
 
