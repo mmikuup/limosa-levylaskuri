@@ -293,8 +293,7 @@ return (
     lineHeight: "1",
   }}
 >
-  Limosa-Keittiöiden<br />
-  levylaskuri
+  Limosa-Keittiöiden levylaskuri
 </h1>
 
 {successMessage && (
