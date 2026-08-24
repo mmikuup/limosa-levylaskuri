@@ -605,13 +605,22 @@ alignItems: "end",
   style={{
     flex: 1,
     textAlign: "left",
-    minWidth: 180,
+    minWidth: 140,
     overflowWrap: "break-word",
   }}
 >
-      <p>
-        <strong>{item.product}</strong>
-      </p>
+      <p
+  style={{
+    margin: "0 0 10px 0",
+    fontWeight: "bold",
+    fontSize: "18px",
+    color: "#444",
+    lineHeight: "1.4",
+    wordBreak: "break-word",
+  }}
+>
+  {item.product}
+</p>
 
       <p>
         {item.height} x {item.width} mm
