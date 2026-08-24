@@ -281,7 +281,8 @@ return (
   style={{
     color: "#ff6b00",
     textAlign: "center",
-    lineHeight: "1.3",
+    fontSize: "26px",
+    lineHeight: "1",
   }}
 >
   Limosa-Keittiöiden
