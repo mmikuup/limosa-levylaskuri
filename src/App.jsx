@@ -322,7 +322,7 @@ marginTop: "-10px",
 marginBottom: "30px",
 }}
 >
-Tilaa mittatarkat kalustelevyt helposti suoraan verkosta. Valmistus 1-4 arkipäivässä.
+Tilaa mittatarkat kalustelevyt helposti suoraan verkosta. Valmistus 3-7 arkipäivässä.
 </p>
 {selectedProduct?.image && (
   <div
