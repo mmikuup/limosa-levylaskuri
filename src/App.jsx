@@ -280,11 +280,15 @@ return (
   <h1
   style={{
     color: "#ff6b00",
-    marginBottom: "30px",
+    textAlign: "center",
+    lineHeight: "1.3",
   }}
 >
-  Limosa-Keittiöiden levylaskuri
+  Limosa-Keittiöiden
+  <br />
+  levylaskuri
 </h1>
+
 {successMessage && (
   <div
     id="success-message"
