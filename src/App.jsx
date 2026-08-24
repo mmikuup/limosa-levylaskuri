@@ -400,7 +400,7 @@ alignItems: "end",
     style={{
       width: "100%",
       padding: "12px",
-      borderRadius: "8px",
+      borderRadius: "5px",
       border: "1px solid #ccc",
       boxSizing: "border-box",
     }}
@@ -421,7 +421,7 @@ alignItems: "end",
     style={{
       width: "100%",
       padding: "12px",
-      borderRadius: "8px",
+      borderRadius: "5px",
       border: "1px solid #ccc",
       boxSizing: "border-box",
     }}
@@ -440,7 +440,7 @@ alignItems: "end",
     style={{
       width: "100%",
       padding: "12px",
-      borderRadius: "8px",
+      borderRadius: "5px",
       border: "1px solid #ccc",
       boxSizing: "border-box",
     }}
@@ -515,7 +515,7 @@ alignItems: "end",
   gap: "35px",
   padding: "15px",
   backgroundColor: "#fff7f0",
-  borderRadius: "10px",
+  borderRadius: "5px",
   marginTop: "15px",
   marginBottom: "15px",
 }}
@@ -540,7 +540,7 @@ alignItems: "end",
       color: "white",
       border: "none",
       padding: "12px 20px",
-      borderRadius: "8px",
+      borderRadius: "5px",
       cursor: "pointer",
       fontSize: "16px",
       fontWeight: "bold",
@@ -576,7 +576,7 @@ alignItems: "end",
         backgroundColor: "#f8f8f8",
         padding: "16px",
         marginTop: "12px",
-        borderRadius: "10px",
+        borderRadius: "5px",
         boxShadow: "0 2px 5px rgba(0,0,0,0.05)",
       }}
     >
@@ -596,7 +596,7 @@ alignItems: "end",
       width: "100px",
       height: "100px",
       objectFit: "cover",
-        borderRadius: "8px",
+        borderRadius: "5px",
 }}
 />
 )}
@@ -668,7 +668,7 @@ Poista
           marginTop: "20px",
           padding: "20px",
           backgroundColor: "#fff3e8",
-          borderRadius: "10px",
+          borderRadius: "5px",
         }}
       >
         <h3>
@@ -696,7 +696,7 @@ Poista
     backgroundColor: "#eef6ff",
     border: "1px solid #b6d4fe",
     padding: "15px",
-    borderRadius: "8px",
+    borderRadius: "5px",
     marginBottom: "20px",
     color: "#345692",
   }}
@@ -804,7 +804,7 @@ Poista
   style={{
     backgroundColor: "#f8f9fa",
     border: "1px solid #dee2e6",
-    borderRadius: "8px",
+    borderRadius: "5px",
     padding: "12px",
     marginBottom: "20px",
     fontSize: "14px",
@@ -825,7 +825,7 @@ Poista
     color: "white",
     border: "none",
     padding: "14px 30px",
-    borderRadius: "8px",
+    borderRadius: "5px",
     cursor: "pointer",
     fontSize: "16px",
     fontWeight: "bold",
