@@ -362,7 +362,7 @@ Tilaa mittatarkat kalustelevyt helposti suoraan verkosta. Valmistus 1-4 arkipäi
   }
   style={{
     width: "100%",
-    padding: "12px",
+    padding: "6px",
     borderRadius: "5px",
     border: "1px solid #ccc",
     boxSizing: "border-box",
