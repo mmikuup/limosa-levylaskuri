@@ -1338,7 +1338,7 @@ Poista
 
 )}
 
-  <p>Annettuja tietoja käytetään ainoastaan tilauksen käsittelyyn. </p>
+  <p>*Annettuja tietoja käytetään ainoastaan tilauksen käsittelyyn.* </p>
   
 <button
 
