@@ -554,7 +554,12 @@ return;
       .filter(Boolean)
       .join(", ");
 
-    return `#${index + 1} ${item.product}
+    return `#${index + 1} ${
+  item.productGroup === "kalustelevyt"
+    ? "Kalustelevy"
+    : "Laminaattitaso"
+}
+Tuote: ${item.product}
 ${
   item.productGroup === "laminaattitasot"
     ? `Pituus: ${item.height} mm
@@ -569,7 +574,8 @@ ${
       ? "Takareuna: ABS-reunanauha"
       : ""
     : `Reunanauhat: ${edges || "Ei reunanauhoja"}`
-}`;
+}
+`;
   })
   .join("\n--------------------------------\n\n");
 
