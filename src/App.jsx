@@ -1,11 +1,36 @@
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
 import melamiinip3 from "./assets/melamiinip3.jpg";
+import mattamusta from "./assets/0190.jpg";
+import tammi from "./assets/3213.jpg";
+import vitivalkoinen from "./assets/C974.jfif";
+import kultatammi from "./assets/K003.jpg";
+import vaaleapähkinä from "./assets/K206.jpg";
+import mustaoxidoitu from "./assets/K205.jpg";
+import betoni from "./assets/K350.jpg";
+import vaaleakivi from "./assets/K538.jpg";
+import harmaakivi from "./assets/K539.jpg";
+import galaxi from "./assets/K553.jpg";
+import mustapronssi from "./assets/K698PN.jpg";
+import calacatta from "./assets/K699PN.jpg";
+import portobello from "./assets/K703PN.jpg";
+import perlino from "./assets/K704PN.jpg";
+import stonehaven from "./assets/K705PN.jpg";
+import cashmere from "./assets/5981BS.jpg";
+import keskiharmaa from "./assets/0197SU.jpg";
+import satiini from "./assets/7045SU.jpg";
+import vanilja from "./assets/K680PD.jpg";
+import hiekkatammi from "./assets/K543SN.jpg";
+
+
+
+
+
 
 function App() {
-  const [product, setProduct] = useState(
-    "Kosteudenkestävä melamiini P3 16 mm"
-  );
+  const [productGroup, setProductGroup] = useState("");
+
+  const [product, setProduct] = useState("");
 
   const [height, setHeight] = useState("");
   const [width, setWidth] = useState("");
@@ -15,6 +40,7 @@ function App() {
   const [rightEdge, setRightEdge] = useState(false);
   const [topEdge, setTopEdge] = useState(false);
   const [bottomEdge, setBottomEdge] = useState(false);
+  const [backEdgeUpgrade, setBackEdgeUpgrade] = useState(false);
 
   const [orderLines, setOrderLines] = useState([]);
   const [customerName, setCustomerName] =
@@ -33,11 +59,12 @@ const [notes, setNotes] =
   useState("");
   const [successMessage, setSuccessMessage] = useState("");
 ``
-const products = [
+const productGroups = {
+kalustelevyt: [
   {
-    name: "Kosteudenkestävä melamiini P3 16 mm",
-    shortName: "Melamiini P3 16mm",
-    pricePerM2: 36,
+    name: "Valkoinen kosteudenkestävä melamiini P3 16mm",
+    shortName: "Valkoinen mel P3 SM 16mm",
+    pricePerM2: 38,
     minHeight: 250,
     maxHeight: 2750,
     minWidth: 70,
@@ -45,29 +72,316 @@ const products = [
     image: melamiinip3,
   },
   {
-    name: "Kosteudenkestävä melamiini P3 18 mm",
-    shortName: "Melamiini P3 18mm",
-    pricePerM2: 50,
+    name: "Valkoinen kosteudenkestävä melamiini soft P3 16mm",
+    shortName: "Valkoinen mel P3 BS 16mm",
+    pricePerM2: 52,
     minHeight: 250,
     maxHeight: 2750,
     minWidth: 70,
     maxWidth: 2000,
     image: melamiinip3,
   },
-];
-const selectedProduct = products.find(
-(p) => p.name === product
-);
-  const edgePricePerM = 4;
-  const minimumPrice = 16;
+  {
+    name: "Cashmere melamiini 16mm",
+    shortName: "Cashmere mel 16mm",
+    pricePerM2: 52,
+    minHeight: 250,
+    maxHeight: 2750,
+    minWidth: 70,
+    maxWidth: 2000,
+    image: cashmere,
+  },
+  {
+    name: "Vanilja melamiini 16mm",
+    shortName: "Vanilja mel 16mm",
+    pricePerM2: 52,
+    minHeight: 250,
+    maxHeight: 2750,
+    minWidth: 70,
+    maxWidth: 2000,
+    image: vanilja,
+  },
+  {
+    name: "Satiini melamiini (matta) 16mm",
+    shortName: "Satiini mel 16mm",
+    pricePerM2: 52,
+    minHeight: 250,
+    maxHeight: 2750,
+    minWidth: 70,
+    maxWidth: 2000,
+    image: satiini,
+  },
+  {
+    name: "Hiekkatammi melamiini 16mm",
+    shortName: "Hiekkatammi mel 16mm",
+    pricePerM2: 52,
+    minHeight: 250,
+    maxHeight: 2750,
+    minWidth: 70,
+    maxWidth: 2000,
+    image: hiekkatammi,
+  },
+  {
+    name: "Harmaa melamiini (matta) 16mm",
+    shortName: "Harmaa mel 16mm",
+    pricePerM2: 52,
+    minHeight: 250,
+    maxHeight: 2750,
+    minWidth: 70,
+    maxWidth: 2000,
+    image: keskiharmaa,
+  },
+],
+
+laminaattitasot: [
+{
+  name: "Viti valkoinen",
+  shortName: "Viti valkoinen",
+  pricingType: "countertop",
+  price600: 125,
+  price1200: 199,
+  backEdgePricePerMeter: 7,
+  minHeight: 300,
+  maxHeight: 4100,
+  minWidth: 300,
+  maxWidth: 1200,
+  image: vitivalkoinen,
+},
+{
+  name: "Matta musta",
+  shortName: "Matta musta",
+  pricingType: "countertop",
+  price600: 155,
+  price1200: 239,
+  backEdgePricePerMeter: 7,
+  minHeight: 300,
+  maxHeight: 4100,
+  minWidth: 300,
+  maxWidth: 1200,
+  image: mattamusta,
+},
+{
+  name: "Tammi",
+  shortName: "Tammi",
+  pricingType: "countertop",
+  price600: 155,
+  price1200: 239,
+  backEdgePricePerMeter: 7,
+  minHeight: 300,
+  maxHeight: 4100,
+  minWidth: 300,
+  maxWidth: 1200,
+  image: tammi,
+},
+{
+  name: "Kultatammi",
+  shortName: "Kultatammi",
+  pricingType: "countertop",
+  price600: 129,
+  price1200: 199,
+  backEdgePricePerMeter: 7,
+  minHeight: 300,
+  maxHeight: 4100,
+  minWidth: 300,
+  maxWidth: 1200,
+  image: kultatammi,
+},
+{
+  name: "Vaalea pähkinä",
+  shortName: "Vaalea pähkinä",
+  pricingType: "countertop",
+  price600: 129,
+  price1200: 199,
+  backEdgePricePerMeter: 7,
+  minHeight: 300,
+  maxHeight: 4100,
+  minWidth: 300,
+  maxWidth: 1200,
+  image: vaaleapähkinä,
+},
+{
+  name: "Musta oxidoitu",
+  shortName: "Musta oxidoitu",
+  pricingType: "countertop",
+  price600: 129,
+  price1200: 199,
+  backEdgePricePerMeter: 7,
+  minHeight: 300,
+  maxHeight: 4100,
+  minWidth: 300,
+  maxWidth: 1200,
+  image: mustaoxidoitu,
+},
+{
+  name: "Betoni",
+  shortName: "Betoni",
+  pricingType: "countertop",
+  price600: 129,
+  price1200: 199,
+  backEdgePricePerMeter: 7,
+  minHeight: 300,
+  maxHeight: 4100,
+  minWidth: 300,
+  maxWidth: 1200,
+  image: betoni,
+},
+{
+  name: "Vaalea kivi",
+  shortName: "Vaalea kivi",
+  pricingType: "countertop",
+  price600: 129,
+  price1200: 199,
+  backEdgePricePerMeter: 7,
+  minHeight: 300,
+  maxHeight: 4100,
+  minWidth: 300,
+  maxWidth: 1200,
+  image: vaaleakivi,
+},
+{
+  name: "Harmaa kivi",
+  shortName: "Harmaa kivi",
+  pricingType: "countertop",
+  price600: 129,
+  price1200: 199,
+  backEdgePricePerMeter: 7,
+  minHeight: 300,
+  maxHeight: 4100,
+  minWidth: 300,
+  maxWidth: 1200,
+  image: harmaakivi,
+},
+{
+  name: "Galaxi",
+  shortName: "Galaxi",
+  pricingType: "countertop",
+  price600: 129,
+  price1200: 199,
+  backEdgePricePerMeter: 7,
+  minHeight: 300,
+  maxHeight: 4100,
+  minWidth: 300,
+  maxWidth: 1200,
+  image: galaxi,
+},
+{
+  name: "Musta pronssi",
+  shortName: "Musta pronssi",
+  pricingType: "countertop",
+  price600: 129,
+  price1200: 199,
+  backEdgePricePerMeter: 7,
+  minHeight: 300,
+  maxHeight: 4100,
+  minWidth: 300,
+  maxWidth: 1200,
+  image: mustapronssi,
+},
+{
+  name: "Calacatta",
+  shortName: "Calacatta",
+  pricingType: "countertop",
+  price600: 129,
+  price1200: 199,
+  backEdgePricePerMeter: 7,
+  minHeight: 300,
+  maxHeight: 4100,
+  minWidth: 300,
+  maxWidth: 1200,
+  image: calacatta,
+},
+{
+  name: "Portobello",
+  shortName: "Portobello",
+  pricingType: "countertop",
+  price600: 129,
+  price1200: 199,
+  backEdgePricePerMeter: 7,
+  minHeight: 300,
+  maxHeight: 4100,
+  minWidth: 300,
+  maxWidth: 1200,
+  image: portobello,
+},
+{
+  name: "Perlino",
+  shortName: "Perlino",
+  pricingType: "countertop",
+  price600: 129,
+  price1200: 199,
+  backEdgePricePerMeter: 7,
+  minHeight: 300,
+  maxHeight: 4100,
+  minWidth: 300,
+  maxWidth: 1200,
+  image: perlino,
+},
+{
+  name: "Stonehaven",
+  shortName: "Stonehaven",
+  pricingType: "countertop",
+  price600: 129,
+  price1200: 199,
+  backEdgePricePerMeter: 7,
+  minHeight: 300,
+  maxHeight: 4100,
+  minWidth: 300,
+  maxWidth: 1200,
+  image: stonehaven,
+},
+]
+};
+
+const selectedProduct =
+  productGroups[productGroup]?.find(
+    (p) => p.name === product
+  );
+  const edgePricePerM = 3;
+  const minimumPrice =
+  productGroup === "laminaattitasot"
+    ? 35
+    : 16;
 
   const area =
     ((Number(height) || 0) *
       (Number(width) || 0)) /
     1000000;
 
-  const boardPrice =
-  area * selectedProduct.pricePerM2;
+  let boardPrice = 0;
+
+if (selectedProduct?.pricingType === "countertop") {
+
+  const depth = Number(width);
+  const lengthMeters = Number(height) / 1000;
+  const length = Number(height);
+
+  let meterPrice = 0;
+
+  if (depth <= 600) {
+    meterPrice = selectedProduct.price600;
+  } else if (depth <= 1200) {
+    meterPrice = selectedProduct.price1200;
+  }
+  let discountFactor = 1;
+
+if (length >= 3001) {
+  discountFactor = 0.85;
+} else if (length >= 2001) {
+  discountFactor = 0.93;
+} else if (length >= 1001) {
+  discountFactor = 0.95;
+}
+
+meterPrice = meterPrice * discountFactor;
+
+  boardPrice = lengthMeters * meterPrice;
+
+} else {
+
+  boardPrice =
+    area * (selectedProduct?.pricePerM2 || 0);
+
+}
 
   let edgeLength = 0;
 
@@ -76,9 +390,23 @@ const selectedProduct = products.find(
   if (topEdge) edgeLength += Number(width) || 0;
   if (bottomEdge) edgeLength += Number(width) || 0;
 
-  const edgePrice =
+  let edgePrice = 0;
+
+if (selectedProduct?.pricingType === "countertop") {
+
+  if (backEdgeUpgrade) {
+    edgePrice =
+      (Number(height) / 1000) *
+      (selectedProduct?.backEdgePricePerMeter || 0);
+  }
+
+} else {
+
+  edgePrice =
     (edgeLength / 1000) *
     edgePricePerM;
+
+}
 
   const calculatedPrice =
     boardPrice + edgePrice;
@@ -90,7 +418,10 @@ const selectedProduct = products.find(
 
   const totalPrice =
     piecePrice * quantity;
+
 function addToOrder() {
+
+  if (productGroup === "kalustelevyt") {
 
   if (
     Number(height) < 250 ||
@@ -109,10 +440,35 @@ function addToOrder() {
     alert(
       "Leveyden tulee olla välillä 70-2000 mm"
     );
-    return
+    return;
+  }
+}
+
+if (productGroup === "laminaattitasot") {
+
+  if (
+    Number(height) < 300 ||
+    Number(height) > 4100
+  ) {
+    alert(
+      "Pituuden tulee olla välillä 300-4100 mm"
+    );
+    return;
+  }
+
+  if (
+    Number(width) < 300 ||
+    Number(width) > 1200
+  ) {
+    alert(
+      "Syvyyden tulee olla välillä 300-1200 mm"
+    );
+    return;
+  }
 }
   const item = {
     product,
+    productGroup,
     height,
     width,
     quantity: Number(quantity),
@@ -120,6 +476,7 @@ function addToOrder() {
     rightEdge,
     topEdge,
     bottomEdge,
+    backEdgeUpgrade,
     totalPrice,
   };
 
@@ -135,12 +492,24 @@ function addToOrder() {
   setBottomEdge(false);
 }
 
-const grandTotal = orderLines.reduce(
-  (sum, item) => sum + item.totalPrice,
-  0
-  );
-  const vat = grandTotal * 0.255;
+const countertopDeliveryFee = 69;
+
+const hasCountertops = orderLines.some(
+  (item) => item.productGroup === "laminaattitasot"
+);
+
+const deliveryCharge =
+  hasCountertops ? countertopDeliveryFee : 0;
+
+const grandTotal =
+  orderLines.reduce(
+    (sum, item) => sum + item.totalPrice,
+    0
+  ) + deliveryCharge;
+
+const vat = grandTotal * 0.255;
 const totalWithVat = grandTotal + vat;
+``
 
 function submitQuoteRequest() {
 
@@ -175,7 +544,7 @@ return;
 
 
   const productsText = orderLines
-  .map((item) => {
+  .map((item, index) => {
     const edges = [
       item.leftEdge && "Vasen sivu (korkeus",
       item.rightEdge && "Oikea sivu (korkeus)",
@@ -185,12 +554,24 @@ return;
       .filter(Boolean)
       .join(", ");
 
-    return `${item.product}
-${item.height} x ${item.width} mm
+    return `#${index + 1} ${item.product}
+${
+  item.productGroup === "laminaattitasot"
+    ? `Pituus: ${item.height} mm
+Syvyys: ${item.width} mm`
+    : `Korkeus: ${item.height} mm
+Leveys: ${item.width} mm`
+}
 Kpl: ${item.quantity}
-Reunanauhat: ${edges || "Ei reunanauhoja"}`;
+${
+  item.productGroup === "laminaattitasot"
+    ? item.backEdgeUpgrade
+      ? "Takareuna: ABS-reunanauha"
+      : ""
+    : `Reunanauhat: ${edges || "Ei reunanauhoja"}`
+}`;
   })
-  .join("\n\n");
+  .join("\n--------------------------------\n\n");
 
   const templateParams = {
     order_number: orderNumber,
@@ -364,9 +745,50 @@ Tilaa mittatarkat kalustelevyt helposti suoraan verkosta. Valmistus 3-7 arkipäi
   </div>
 </div>
 )}
-      <h3>Tuote</h3>
 
-      <select
+<h3>Tuoteryhmä</h3>
+
+<select
+  value={productGroup}
+  onChange={(e) => {
+    setProductGroup(e.target.value);
+
+    const firstProduct =
+      productGroups[e.target.value]?.[0];
+
+    if (firstProduct) {
+      setProduct(firstProduct.name);
+    }
+  }}
+  style={{
+    width: "100%",
+    padding: "12px",
+    borderRadius: "5px",
+    border: "1px solid #ccc",
+    boxSizing: "border-box",
+    fontSize: "14px",
+    fontWeight: "500",
+    marginBottom: "20px",
+  }}
+>
+  <option value="">
+  Valitse tuoteryhmä
+</option>
+
+<option value="kalustelevyt">
+  Kalustelevyt
+</option>
+
+<option value="laminaattitasot">
+  Laminaattitasot 30mm (suorareuna)
+</option>
+</select>
+
+{productGroup && (
+<>
+<h3>Tuote</h3>
+
+<select
   value={product}
   onChange={(e) =>
     setProduct(e.target.value)
@@ -381,7 +803,7 @@ Tilaa mittatarkat kalustelevyt helposti suoraan verkosta. Valmistus 3-7 arkipäi
     fontWeight: "500",
   }}
 >
-  {products.map((item) => (
+  {productGroups[productGroup]?.map((item) => (
     <option
       key={item.name}
       value={item.name}
@@ -390,6 +812,8 @@ Tilaa mittatarkat kalustelevyt helposti suoraan verkosta. Valmistus 3-7 arkipäi
     </option>
   ))}
 </select>
+  </>
+)}
 <div
   style={{
     display: "grid",
@@ -398,7 +822,13 @@ gap: "15px",
 alignItems: "end",
   }}
 ><div>
-  <h3>Korkeus (mm)</h3>
+ 
+  <h3>
+  {productGroup === "laminaattitasot"
+    ? "Pituus (mm)"
+    : "Korkeus (mm)"
+  }
+</h3>
 
   <input
     type="number"
@@ -419,7 +849,13 @@ alignItems: "end",
 </div>
 
       <div>
-  <h3>Leveys (mm)</h3>
+
+  <h3>
+  {productGroup === "laminaattitasot"
+    ? "Syvyys (mm)"
+    : "Leveys (mm)"
+  }
+</h3>
 
   <input
     type="number"
@@ -460,7 +896,9 @@ alignItems: "end",
 
 </div>
 
-      <h3>Reunanauhoitukset</h3>
+      {productGroup === "kalustelevyt" && (
+<>
+<h3>Reunanauhoitukset</h3>
 
       <div
   style={{
@@ -515,6 +953,37 @@ alignItems: "end",
     {" "}Alareuna (leveys)
   </label>
 </div>
+  </>
+)}
+
+{productGroup === "laminaattitasot" && (
+  <>
+    <h3>Reunanauhat</h3>
+<p
+  style={{
+    fontSize: "14px",
+    color: "#666",
+    marginBottom: "10px",
+    lineHeight: "1.4",
+  }}
+>
+  Etureuna (pituus) sekä päädyt (syvyys) sisältyvät hintaan
+  ABS-reunanauhalla viimeisteltyinä.
+  Takareuna (pituus) on vakiona paperinauhalla.
+</p>
+    <label>
+      <input
+        type="checkbox"
+        checked={backEdgeUpgrade}
+        onChange={(e) =>
+          setBackEdgeUpgrade(e.target.checked)
+        }
+      />
+
+      Myös takareuna ABS-reunanauhalla
+    </label>
+  </>
+)}
 
       <hr />
 
@@ -540,7 +1009,7 @@ alignItems: "end",
   }}
 >
   {height && width && quantity
-    ? `${totalPrice.toFixed(2)} €`
+    ? `${totalPrice.toFixed(2)} € (veroton)`
     : "Syötä mitat ja määrä"}
 </h2>
 
@@ -575,9 +1044,10 @@ alignItems: "end",
 
 {orderLines.map((item, index) => {
 
-  const productInfo = products.find(
-    (p) => p.name === item.product
-  );
+  const productInfo =
+  Object.values(productGroups)
+    .flat()
+    .find((p) => p.name === item.product);
   return (
 
     <div
@@ -633,25 +1103,43 @@ alignItems: "end",
   {item.product}
 </p>
 
-      <p>
-        {item.height} x {item.width} mm
-      </p>
+      {item.productGroup === "laminaattitasot" ? (
+  <p>
+    Pituus: {item.height} mm<br />
+    Syvyys: {item.width} mm
+  </p>
+) : (
+  <p>
+    Korkeus: {item.height} mm<br />
+    Leveys: {item.width} mm
+  </p>
+)}
 
       <p>
         Kpl: {item.quantity}
       </p>
 
-      <p>
-        Reunanauhat:
-        {[
-          item.leftEdge && "Vasen",
-          item.rightEdge && "Oikea",
-          item.topEdge && "Ylä",
-          item.bottomEdge && "Ala",
-        ]
-          .filter(Boolean)
-          .join(", ")}
-      </p>
+      {item.productGroup === "kalustelevyt" && (
+  <p>
+    Reunanauhat: {
+      [
+        item.leftEdge && "Vasen",
+        item.rightEdge && "Oikea",
+        item.topEdge && "Ylä",
+        item.bottomEdge && "Ala",
+      ]
+        .filter(Boolean)
+        .join(", ") || "Ei reunanauhoja"
+    }
+  </p>
+)}
+
+{item.productGroup === "laminaattitasot" &&
+  item.backEdgeUpgrade && (
+    <p>
+      Takareuna: ABS-reunanauha
+    </p>
+)}
 
       <p>
         Hinta: {item.totalPrice.toFixed(2)} €
@@ -659,6 +1147,7 @@ alignItems: "end",
 
      <button
 onClick={() =>
+
 setOrderLines(
 orderLines.filter(
 (_, i) => i !== index
@@ -691,17 +1180,24 @@ Poista
           borderRadius: "5px",
         }}
       >
-        <h3>
-          Veroton hinta: {grandTotal.toFixed(2)} €
-        </h3>
+      
+{deliveryCharge > 0 && (
+  <h3>
+    Tasojen käsittely- sekä pakkauskulu:
+    {" "}
+    {deliveryCharge.toFixed(2)} €
+  </h3>
+)}
 
-        <h3>
-          ALV 25,5 %:
-          {" "}
-          {vat.toFixed(2)} €
-        </h3>
+<h3>
+  Veroton hinta: {grandTotal.toFixed(2)} €
+</h3>
 
-        <h2
+<h3>
+  ALV 25,5 %: {vat.toFixed(2)} €
+</h3>
+
+<h2
   style={{
     color: "#000000",
     fontWeight: "bold",
@@ -711,6 +1207,7 @@ Poista
   Yhteensä: {totalWithVat.toFixed(2)} €
 </h2>
       <hr />
+
 <div
   style={{
     backgroundColor: "#eef6ff",
