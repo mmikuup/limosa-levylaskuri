@@ -1069,46 +1069,6 @@ marginBottom: "30px",
 Tilaa mittatarkat kalusteovet, kalustelevyt, välitilalevyt, laminaattitasot ja kalustehelat helposti verkosta.
 Tuotantoaika 3-7 arkipäivää
 </p>
-{displayImage && (
-  <div
-  style={{
-    textAlign: "center",
-    marginTop: "15px",
-    marginBottom: "20px",
-  }}
->
-  <div
-    style={{
-      position: "relative",
-      display: "inline-block",
-    }}
-  >
-    <img
-  src={displayImage}
-  alt={displayName}
-      style={{
-        width: "100%",
-        maxWidth: "350px",
-        height: "auto",
-        borderRadius: "10px",
-        boxShadow: "0 4px 10px rgba(0,0,0,0.15)",
-        display: "block",
-      }}
-    />
-
-    <div
-      style={{
-        position: "absolute",
-        bottom: 0,
-     tomLeftRadius: "10px",
-        borderBottomRightRadius: "10px",
-      }}
-    >
-      {displayName}
-    </div>
-  </div>
-</div>
-)}
 
 <h3>Tuoteryhmä</h3>
 
@@ -1191,6 +1151,47 @@ Tuotantoaika 3-7 arkipäivää
         )}
       </select>
     </div>
+)}
+
+{displayImage && (
+  <div
+  style={{
+    textAlign: "center",
+    marginTop: "15px",
+    marginBottom: "20px",
+  }}
+>
+  <div
+    style={{
+      position: "relative",
+      display: "inline-block",
+    }}
+  >
+  <img
+  src={displayImage}
+  alt={displayName}
+  style={{
+    width: "100%",
+    maxWidth: "clamp(220px, 90vw, 300px)",
+    height: "auto",
+    borderRadius: "10px",
+    boxShadow: "0 4px 10px rgb(255, 255, 255)",
+    display: "block",
+    }}
+    />
+
+    <div
+      style={{
+        position: "absolute",
+        bottom: 0,
+     tomLeftRadius: "10px",
+        borderBottomRightRadius: "10px",
+      }}
+    >
+      {displayName}
+    </div>
+  </div>
+</div>
 )}
 
 {productGroup === "kalustehelat" && (
