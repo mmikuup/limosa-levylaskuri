@@ -38,6 +38,7 @@ import i027541betamini from "./assets/027541betamini.jpg";
 import v114rst from "./assets/v114rst.jpg";
 import helixmu from "./assets/helixMU.jpg";
 import helixme from "./assets/helixme.jpg";
+import sapluuna from "./assets/16044_1sapluuna.jpg";
 
 
 
@@ -495,6 +496,12 @@ const hardwareProducts = {
       },
     ],
   },
+  {
+    name: "Vedinsapluuna",
+    price: 9.00,
+    image: sapluuna,
+    colors: [],
+  },
 ],
 
   saranat: [
@@ -561,7 +568,10 @@ const displayName =
     ? 89
     : productGroup === "kalustehelat"
     ? 0
-    : 16;
+    : productGroup === "kalusteovet" &&
+      hingeDrilling
+    ? 26
+    : 20;
 ``
 
   const area =
@@ -651,8 +661,7 @@ if (
   productGroup === "kalusteovet" &&
   hingeDrilling
 ) {
-  drillingPrice =
-    6 * Number(quantity);
+  drillingPrice = 6;
 }
   const calculatedPrice =
   boardPrice +
@@ -890,10 +899,12 @@ Tuote: ${item.product}
 ${
   item.productGroup === "kalustehelat" &&
   item.hardwareGroup === "vetimet" &&
+  item.product !== "Vedinsapluuna" &&
   item.handleColor
     ? `Väri: ${item.handleColor}\n`
     : ""
-}${
+}
+${
   item.productGroup === "laminaattitasot"
     ? `Pituus: ${item.height} mm
 Syvyys: ${item.width} mm\n`
@@ -1070,9 +1081,21 @@ Tilaa mittatarkat kalusteovet, kalustelevyt, välitilalevyt, laminaattitasot ja 
 Tuotantoaika 3-7 arkipäivää
 </p>
 
-<h3>Tuoteryhmä</h3>
+<div
+  style={{
+    display: "grid",
+    gridTemplateColumns:
+      "repeat(auto-fit, minmax(250px, 1fr))",
+    gap: "20px",
+    alignItems: "start",
+    marginBottom: "20px",
+  }}
+>
 
-<select
+  <div>
+    <h3>Tuoteryhmä</h3>
+
+    <select
   value={productGroup}
   onChange={(e) => {
     setProductGroup(e.target.value);
@@ -1092,66 +1115,66 @@ Tuotantoaika 3-7 arkipäivää
     boxSizing: "border-box",
     fontSize: "clamp(14px, 1.8vw, 16px)",
     fontWeight: "500",
-    marginBottom: "20px",
   }}
 >
   <option value="">
-  Valitse tuoteryhmä
-</option>
+    Valitse tuoteryhmä
+  </option>
 
-<option value="kalusteovet">
-  Kalusteovet
-</option>
+  <option value="kalusteovet">
+    Kalusteovet
+  </option>
 
-<option value="kalustelevyt">
-  Melamiinipintaiset lastulevyt
-</option>
+  <option value="kalustelevyt">
+    Melamiinipintaiset lastulevyt
+  </option>
 
-<option value="laminaattitasot">
-  Suorareunaiset laminaattitasot (30 x 4100 x 600/1200mm)
-</option>
+  <option value="laminaattitasot">
+    Suorareunaiset laminaattitasot
+  </option>
 
-<option value="välitilalevyt">
-  Välitilalevyt (4,4 x 3050 x 600/1220mm)
-</option>
+  <option value="välitilalevyt">
+    Välitilalevyt
+  </option>
 
-<option value="kalustehelat">
-  Kalustehelat
-</option>
-
+  <option value="kalustehelat">
+    Kalustehelat
+  </option>
 </select>
+  </div>
 
-{productGroup &&
-  productGroup !== "kalustehelat" && (
-    <div style={{ marginBottom: "20px" }}>
-      <h3>Tuote</h3>
+  {productGroup &&
+    productGroup !== "kalustehelat" && (
+      <div>
+        <h3>Tuote</h3>
 
-      <select
-        value={product}
-        onChange={(e) =>
-          setProduct(e.target.value)
-        }
-        style={{
-          width: "100%",
-          padding: "12px",
-          borderRadius: "5px",
-          border: "1px solid #ccc",
-          boxSizing: "border-box",
-        }}
-      >
-        {(productGroups[productGroup] || []).map(
-          (item) => (
-            <option
-              key={item.name}
-              value={item.name}
-            >
-              {item.name}
-            </option>
-          )
-        )}
-      </select>
-    </div>
-)}
+        <select
+          value={product}
+          onChange={(e) =>
+            setProduct(e.target.value)
+          }
+          style={{
+            width: "100%",
+            padding: "12px",
+            borderRadius: "5px",
+            border: "1px solid #ccc",
+            boxSizing: "border-box",
+          }}
+        >
+          {(productGroups[productGroup] || []).map(
+            (item) => (
+              <option
+                key={item.name}
+                value={item.name}
+              >
+                {item.name}
+              </option>
+            )
+          )}
+        </select>
+      </div>
+    )}
+</div>
 
 {displayImage && (
   <div
@@ -1638,6 +1661,23 @@ alignItems: "end",
     </label>
   </>
 )}
+{productGroup === "kalustehelat" &&
+  hardwareGroup === "vetimet" &&
+  product !== "Vedinsapluuna" && (
+    <p
+      style={{
+        fontSize: "clamp(14px, 1.8vw, 16px)",
+        color: "#666",
+        textAlign: "center",
+        marginTop: "15px",
+        marginBottom: "15px",
+        lineHeight: "1.4",
+      }}
+    >
+      Vetimen mukana tulee 21mm pitkä vedinruuvi,
+      joka soveltuu 16mm paksulle ovelle.
+    </p>
+)}
 
       <hr />
 
@@ -1831,8 +1871,8 @@ alignItems: "end",
 )}
 
 {item.productGroup === "kalustehelat" &&
-
  item.hardwareGroup === "vetimet" &&
+ item.product !== "Vedinsapluuna" &&
  item.handleColor && (
   <p>Väri: {item.handleColor}</p>
 )}
