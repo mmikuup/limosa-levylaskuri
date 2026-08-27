@@ -1061,12 +1061,13 @@ return (
 style={{
 textAlign: "center",
 color: "#666",
-fontSize: "20px",
+fontSize: "clamp(15px, 3vw, 22px)",
 marginTop: "-10px",
 marginBottom: "30px",
 }}
 >
 Tilaa mittatarkat kalusteovet, kalustelevyt, välitilalevyt, laminaattitasot ja kalustehelat helposti verkosta.
+Tuotantoaika 3-7 arkipäivää
 </p>
 {displayImage && (
   <div
@@ -1129,7 +1130,7 @@ Tilaa mittatarkat kalusteovet, kalustelevyt, välitilalevyt, laminaattitasot ja 
     borderRadius: "5px",
     border: "1px solid #ccc",
     boxSizing: "border-box",
-    fontSize: "14px",
+    fontSize: "clamp(14px, 1.8vw, 16px)",
     fontWeight: "500",
     marginBottom: "20px",
   }}
@@ -1491,7 +1492,7 @@ alignItems: "end",
 
     <p
       style={{
-        fontSize: "14px",
+        fontSize: "clamp(14px, 1.8vw, 16px)",
         color: "#666",
         lineHeight: "1.5",
         marginTop: "8px",
@@ -1613,7 +1614,7 @@ alignItems: "end",
     <h3>Reunanauhat</h3>
 <p
   style={{
-    fontSize: "14px",
+    fontSize: "clamp(14px, 1.8vw, 16px)",
     color: "#666",
     marginBottom: "10px",
     lineHeight: "1.4",
@@ -1656,7 +1657,7 @@ alignItems: "end",
   style={{
     margin: 0,
     color: "#ff6b00",
-    fontSize: "20px",
+    fontSize: "clamp(14px, 2vw, 20px)",
     fontWeight: "bold",
   }}
 >
@@ -1674,10 +1675,10 @@ alignItems: "end",
       backgroundColor: "#ff6b00",
       color: "white",
       border: "none",
-      padding: "12px 20px",
       borderRadius: "5px",
       cursor: "pointer",
-      fontSize: "16px",
+      fontSize: "clamp(14px, 2vw, 16px)",
+      padding: "clamp(10px, 2vw, 12px) clamp(14px, 3vw, 20px)",
       fontWeight: "bold",
     }}
   >
@@ -1773,7 +1774,7 @@ alignItems: "end",
   style={{
     margin: "0 0 10px 0",
     fontWeight: "bold",
-    fontSize: "18px",
+    fontSize: "clamp(13px, 1.8vw, 15px)",
     color: "#444",
     lineHeight: "1.4",
     wordBreak: "break-word",
@@ -1894,7 +1895,7 @@ Poista
   style={{
     color: "#000000",
     fontWeight: "bold",
-    fontSize: "30px",
+    fontSize: "clamp(18px, 2.5vw, 24px)"
   }}
 >
   Yhteensä: {totalWithVat.toFixed(2)} €
@@ -2017,7 +2018,7 @@ Poista
     borderRadius: "5px",
     padding: "12px",
     marginBottom: "20px",
-    fontSize: "14px",
+    fontSize: "clamp(12px, 2vw, 16px)",
     color: "#555",
   }}
 >
