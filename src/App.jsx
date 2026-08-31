@@ -42,6 +42,7 @@ import sapluuna from "./assets/16044_1sapluuna.jpg";
 import wcovet from "./assets/wcovet.jpeg";
 import wclaatikot from "./assets/wclaatikot.jpg";
 import peilikaappi from "./assets/peilikaappi.jpeg";
+import wckomero from "./assets/wckomero.jpg";
 
 
 
@@ -141,12 +142,6 @@ const productGroups = {
     image: melamiinip3,
   },
   {
-    name: "Musta vedenkestävä PUR 16mm",
-    shortName: "Musta PUR 16mm",
-    pricePerM2: 100,
-    image: mattamusta,
-  },
-  {
     name: "Tammi vedenkestävä PUR 16mm",
     shortName: "Tammi PUR 16mm",
     pricePerM2: 100,
@@ -207,12 +202,6 @@ purkalustelevyt: [
     image: melamiinip3,
   },
   {
-    name: "Musta vedenkestävä PUR 16mm",
-    shortName: "Valkoinen PUR 16mm",
-    pricePerM2: 100,
-    image: melamiinip3,
-  },
-  {
     name: "Tammi vedenkestävä PUR 16mm",
     shortName: "Tammi PUR 16mm",
     pricePerM2: 100,
@@ -229,12 +218,6 @@ purwckalusteet: [
     colors: [
       {
         name: "Valkoinen",
-        price600: 250,
-        price800: 265,
-        image: wcovet,
-      },
-      {
-        name: "Musta",
         price600: 250,
         price800: 265,
         image: wcovet,
@@ -261,12 +244,6 @@ purwckalusteet: [
         image: wclaatikot,
       },
       {
-        name: "Musta",
-        price600: 350,
-        price800: 365,
-        image: wclaatikot,
-      },
-      {
         name: "Tammi",
         price600: 350,
         price800: 365,
@@ -283,12 +260,6 @@ purwckalusteet: [
     colors: [
       {
         name: "Valkoinen",
-        price600: 185,
-        price800: 195,
-        
-      },
-      {
-        name: "Musta",
         price600: 185,
         price800: 195,
         
@@ -315,16 +286,31 @@ purwckalusteet: [
         image: peilikaappi,
       },
       {
-        name: "Musta",
-        price600: 225,
-        price800: 230,
-        image: peilikaappi,
-      },
-      {
         name: "Tammi",
         price600: 225,
         price800: 230,
         image: peilikaappi,
+      },
+    ],
+  },
+  {
+    name: "PUR-hyllykomero",
+    type: "komero",
+    height: 1750,
+    minWidth: 300,
+    maxWidth: 400,
+    colors: [
+      {
+        name: "Valkoinen",
+        price300: 250,
+        price400: 265,
+        image: wckomero,
+      },
+      {
+        name: "Tammi",
+        price300: 250,
+        price400: 265,
+        image: wckomero,
       },
     ],
   },
@@ -764,36 +750,61 @@ if (productGroup === "purwckalusteet") {
 
   const w = Number(width);
 
-  if (w === 600) {
+  if (product === "PUR-hyllykomero") {
+
+  if (w === 300) {
 
     boardPrice =
-      selectedCabinetColor?.price600 || 0;
+      selectedCabinetColor?.price300 || 0;
 
-  } else if (w === 800) {
+  } else if (w === 400) {
 
     boardPrice =
-      selectedCabinetColor?.price800 || 0;
+      selectedCabinetColor?.price400 || 0;
 
   } else {
 
-    const priceDifference =
-      selectedCabinetColor.price800 -
-      selectedCabinetColor.price600;
-
-    const interpolatedPrice =
-      selectedCabinetColor.price600 +
-      ((w - 600) / 200) *
-      priceDifference;
-
     boardPrice =
-      interpolatedPrice + 35;
+      selectedCabinetColor?.price300 +
+      ((w - 300) / 100) *
+      (
+        selectedCabinetColor?.price400 -
+        selectedCabinetColor?.price300
+      );
 
+    boardPrice += 35;
   }
-} 
-else if (
+  } else {
+
+    if (w === 600) {
+
+      boardPrice =
+        selectedCabinetColor?.price600 || 0;
+
+    } else if (w === 800) {
+
+      boardPrice =
+        selectedCabinetColor?.price800 || 0;
+
+    } else {
+
+      const priceDifference =
+        selectedCabinetColor.price800 -
+        selectedCabinetColor.price600;
+
+      const interpolatedPrice =
+        selectedCabinetColor.price600 +
+        ((w - 600) / 200) *
+        priceDifference;
+
+      boardPrice =
+        interpolatedPrice + 35;
+    }
+  }
+
+} else if (
   selectedProduct?.pricingType === "countertop"
-)
-{
+) {
   const depth = Number(width);
   const lengthMeters = Number(height) / 1000;
   const length = Number(height);
@@ -959,6 +970,7 @@ const isStandardWidth =
     ? 184
     : 365;
 
+
   const totalPrice =
   productGroup === "kalustehelat"
     ? hardwarePrice
@@ -1028,15 +1040,23 @@ if (productGroup === "purkalustelevyt") {
   }
 }
 
-if (
-  productGroup === "purwckalusteet" &&
-  (Number(width) < 600 ||
-   Number(width) > 800)
-) {
-  alert(
-    "WC-kalusteiden leveyden tulee olla välillä 600-800 mm."
-  );
-  return;
+if (productGroup === "purwckalusteet") {
+
+  if (
+    product === "PUR-hyllykomero" &&
+    (Number(width) < 300 || Number(width) > 400)
+  ) {
+    alert("Leveyden tulee olla 300-400 mm");
+    return;
+  }
+
+  if (
+    product !== "PUR-hyllykomero" &&
+    (Number(width) < 600 || Number(width) > 800)
+  ) {
+    alert("Leveyden tulee olla 600-800 mm");
+    return;
+  }
 }
 
 if (productGroup === "kalusteovet") {
@@ -1142,6 +1162,7 @@ console.log("selectedHandle image", selectedHandle?.image);
 console.log("selectedProduct", selectedProduct);
 console.log("cabinetColor", cabinetColor);
 console.log("selectedCabinetColor", selectedCabinetColor);
+console.log(product);
 
   const existingIndex = orderLines.findIndex(
   (line) =>
@@ -1597,7 +1618,7 @@ Tuotantoaika 3-7 arkipäivää
   </option>
 
   <option value="purwckalusteet">
-  WC-kalusteet
+  Vedenkestävät kylpyhuonekalusteet
   </option>
 
   <option value="kalustehelat">
@@ -1703,10 +1724,6 @@ Tuotantoaika 3-7 arkipäivää
     >
       <option value="Valkoinen">
         Valkoinen
-      </option>
-
-      <option value="Musta">
-        Musta
       </option>
 
       <option value="Tammi">
@@ -2006,39 +2023,70 @@ alignItems: "end",
       fontWeight: "bold",
     }}
   >
-    Korkeus: {product.toLowerCase().includes("yläkaappi") ? "705" : "565"} mm
+    Korkeus: {
+      product === "PUR-hyllykomero"
+        ? "1750"
+        : product.toLowerCase().includes("yläkaappi")
+        ? "705"
+        : "565"
+    } mm
     {" | "}
-    Syvyys: {product.toLowerCase().includes("yläkaappi") ? "184" : "365"} mm
+    Runkosyvyys: {
+      product.toLowerCase().includes("yläkaappi")
+        ? "184"
+        : "365"
+    } mm
   </p>
 )}
 
 {productGroup === "purwckalusteet" && (
   <p
-    style={{
-      fontSize: "clamp(14px, 1.8vw, 16px)",
-      color: "#666",
-      textAlign: "center",
-      marginTop: "10px",
-      lineHeight: "1.4",
-    }}
-  >
-    *Vakioleveydet ovat 600 mm ja 800 mm. Muista leveyksistä
-    veloitetaan erikoismittalisä.
+  style={{
+    fontSize: "clamp(14px, 1.8vw, 16px)",
+    color: "#666",
+    textAlign: "center",
+    marginTop: "10px",
+    lineHeight: "1.4",
+  }}
+>
+  {
+    product === "PUR-hyllykomero"
+      ? "*Vakioleveydet ovat 300 mm ja 400 mm. Muista leveyksistä veloitetaan erikoismittalisä."
+      : "*Vakioleveydet ovat 600 mm ja 800 mm. Muista leveyksistä veloitetaan erikoismittalisä."
+  }
 
-    {product.toLowerCase().includes("alakaappi") && (
-      <>
-        <br />
-        <strong>
-          **Tuote ei sisällä kuvissa näkyvää allasta eikä vetimiä.
-        </strong>
-      </>
-    )}
-  </p>
+  {product.toLowerCase().includes("alakaappi") && (
+    <>
+      <br />
+      <strong>
+        **Tuote ei sisällä kuvissa näkyvää allasta eikä vetimiä.
+      </strong>
+    </>
+  )}
+
+  {product.toLowerCase().includes("hyllykomero") && (
+    <>
+      <br />
+      <strong>
+        **Tuote ei sisällä kuvassa näkyvää vedintä.
+      </strong>
+    </>
+  )}
+</p>
 )}
+
 {productGroup === "purwckalusteet" &&
- ![600, 800].includes(Number(width)) &&
- Number(width) >= 600 &&
- Number(width) <= 800 && (
+ (
+   (product === "PUR-hyllykomero" &&
+    ![300, 400, 500, 600].includes(Number(width)) &&
+    Number(width) >= 300 &&
+    Number(width) <= 600) ||
+
+   (product !== "PUR-hyllykomero" &&
+    ![600, 800].includes(Number(width)) &&
+    Number(width) >= 600 &&
+    Number(width) <= 800)
+ ) && (
   <p
     style={{
       fontSize: "clamp(13px, 1.6vw, 14px)",
@@ -2049,7 +2097,7 @@ alignItems: "end",
       marginBottom: "10px",
     }}
   >
-   + Erikoismittalisä 
+    + Erikoismittalisä
   </p>
 )}
 
