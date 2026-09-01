@@ -39,11 +39,14 @@ import v114rst from "./assets/v114rst.jpg";
 import helixmu from "./assets/helixMU.jpg";
 import helixme from "./assets/helixme.jpg";
 import sapluuna from "./assets/16044_1sapluuna.jpg";
-import wcovet from "./assets/wcovet.jpeg";
-import wclaatikot from "./assets/wclaatikot.jpg";
+import wcovet from "./assets/pur-wcovet.png";
+import wclaatikot from "./assets/pur-laatikot.png";
 import peilikaappi from "./assets/peilikaappi.jpeg";
-import wckomero from "./assets/wckomero.jpg";
-
+import wckomero from "./assets/pur-hyllykomero.png";
+import purhyllykomerokortti from "./assets/Tuotekortti pur-hyllykomero.png";
+import puralakaappiovillakortti from "./assets/Tuotekortti pur-alakaappi ovilla.png";
+import puralakaappilaatikoillakortti from "./assets/Tuotekortti pur-alakaappi laatikoilla.png";
+import puryläkaappipeiliovillakortti from "./assets/Tuotekortti pur-yläkaappi peiliovilla.png";
 
 
 
@@ -80,9 +83,10 @@ function App() {
   const [deliveryPostalCode, setDeliveryPostalCode] = useState("");
 
   const [deliveryCity, setDeliveryCity] = useState("");
-  const [cityTouched, setCityTouched] = useState(false);
   const [deliveryConfirmed, setDeliveryConfirmed] = useState(false);
-``
+
+  const [showInfoCard, setShowInfoCard] = useState(false);
+
 
 const [phone, setPhone] =
   useState("");
@@ -215,6 +219,7 @@ purwckalusteet: [
     height: 565,
     minWidth: 600,
     maxWidth: 800,
+    infoImage: puralakaappiovillakortti,
     colors: [
       {
         name: "Valkoinen",
@@ -236,6 +241,7 @@ purwckalusteet: [
     height: 565,
     minWidth: 600,
     maxWidth: 800,
+    infoImage: puralakaappilaatikoillakortti,
     colors: [
       {
         name: "Valkoinen",
@@ -257,6 +263,7 @@ purwckalusteet: [
     height: 705,
     minWidth: 600,
     maxWidth: 800,
+    infoImage: puryläkaappipeiliovillakortti,
     colors: [
       {
         name: "Valkoinen",
@@ -278,6 +285,7 @@ purwckalusteet: [
     height: 705,
     minWidth: 600,
     maxWidth: 800,
+    infoImage: puryläkaappipeiliovillakortti,
     colors: [
       {
         name: "Valkoinen",
@@ -299,17 +307,18 @@ purwckalusteet: [
     height: 1750,
     minWidth: 300,
     maxWidth: 400,
+    infoImage: purhyllykomerokortti,
     colors: [
       {
         name: "Valkoinen",
-        price300: 250,
-        price400: 265,
+        price300: 335,
+        price400: 350,
         image: wckomero,
       },
       {
         name: "Tammi",
-        price300: 250,
-        price400: 265,
+        price300: 335,
+        price400: 350,
         image: wckomero,
       },
     ],
@@ -1131,9 +1140,6 @@ const selectedCabinetColor =
     (color) => color.name === cabinetColor
   );
 
-console.log("selectedHandle", selectedHandle);
-console.log("selectedHandle image", selectedHandle?.image);
-
   const item = {
     product,
     productGroup,
@@ -1158,11 +1164,6 @@ console.log("selectedHandle image", selectedHandle?.image);
   selectedProduct?.image,
   };
 
-  console.log("item.image", item.image);
-console.log("selectedProduct", selectedProduct);
-console.log("cabinetColor", cabinetColor);
-console.log("selectedCabinetColor", selectedCabinetColor);
-console.log(product);
 
   const existingIndex = orderLines.findIndex(
   (line) =>
@@ -1299,21 +1300,20 @@ return [
   `Tuote: ${item.product}`,
 
   item.productGroup === "purwckalusteet" &&
-  item.cabinetColor
-    ? `Väri: ${item.cabinetColor}`
-    : null,
-item.productGroup === "purwckalusteet"
-  ? `Korkeus: 565 mm`
+item.cabinetColor
+  ? `Väri: ${item.cabinetColor}`
   : null,
+
+item.productGroup === "purwckalusteet"
+  ? `Korkeus: ${item.height} mm`
+  : null,
+
 item.productGroup === "purwckalusteet"
   ? `Leveys: ${item.width} mm`
   : null,
+
 item.productGroup === "purwckalusteet"
-  ? `Syvyys: ${
-      item.product.toLowerCase().includes("yläkaappi")
-        ? 184
-        : 365
-    } mm`
+  ? `Syvyys: ${item.wcDepth} mm`
   : null,
 
   item.productGroup === "kalustehelat" &&
@@ -1545,7 +1545,7 @@ marginTop: "-10px",
 marginBottom: "30px",
 }}
 >
-Tilaa mittatarkat kalusteovet, kalustelevyt, välitilalevyt, laminaattitasot ja kalustehelat helposti verkosta.
+Tilaa mittatarkat kalusteovet, kalustelevyt, välitilalevyt, laminaattitasot, kalustehelat ja kylpyhuonekalusteet helposti verkosta.
 Tuotantoaika 3-7 arkipäivää
 </p>
 
@@ -1675,31 +1675,56 @@ Tuotantoaika 3-7 arkipäivää
     }}
   >
   <img
-  src={displayImage}
+  src={
+    showInfoCard && selectedProduct?.infoImage
+      ? selectedProduct.infoImage
+      : displayImage
+  }
   alt={displayName}
   style={{
     width: "100%",
-    maxWidth: "clamp(220px, 90vw, 300px)",
+    maxWidth: "clamp(280px, 95vw, 600px)",
     height: "auto",
     borderRadius: "10px",
     boxShadow: "0 4px 10px rgb(255, 255, 255)",
     display: "block",
-    }}
-    />
+  }}
+/>
 
-    <div
-      style={{
-        position: "absolute",
-        bottom: 0,
-     tomLeftRadius: "10px",
-        borderBottomRightRadius: "10px",
-      }}
-    >
-      {displayName}
-    </div>
+    {!showInfoCard && (
+  <div
+    style={{
+      position: "center",
+      bottom: 0,
+      borderBottomLeftRadius: "10px",
+      borderBottomRightRadius: "10px",
+    }}
+  >
+    {displayName}
+  </div>
+)}
   </div>
 </div>
 )}
+
+{selectedProduct?.infoImage && (
+  <p
+    onClick={() => setShowInfoCard(!showInfoCard)}
+    style={{
+      textAlign: "center",
+      color: "#ff6b00",
+      fontWeight: "bold",
+      cursor: "pointer",
+      marginTop: "10px",
+      textDecoration: "underline",
+    }}
+  >
+    {showInfoCard
+      ? "Näytä tuotekuva"
+      : "Näytä tuotekortti"}
+  </p>
+)}
+
 {productGroup === "purwckalusteet" && (
   <div
     style={{
