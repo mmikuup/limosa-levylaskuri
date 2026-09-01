@@ -1129,12 +1129,13 @@ const selectedCabinetColor =
     (color) => color.name === cabinetColor
   );
 
-if (drillingType === "custom") {
+if (
+  productGroup === "kalusteovet" &&
+  drillingType === "custom"
+) {
 
   if (!bottomHinge || !topHinge) {
-    alert(
-      "Anna 1. ja 2. saranan etäisyydet."
-    );
+    alert("Anna 1. ja 2. saranan etäisyydet.");
     return;
   }
 
@@ -1142,9 +1143,7 @@ if (drillingType === "custom") {
     Number(extraHinges) >= 1 &&
     !thirdHinge
   ) {
-    alert(
-      "Anna 3. saranan etäisyys."
-    );
+    alert("Anna 3. saranan etäisyys.");
     return;
   }
 
@@ -1152,9 +1151,7 @@ if (drillingType === "custom") {
     Number(extraHinges) >= 2 &&
     !fourthHinge
   ) {
-    alert(
-      "Anna 4. saranan etäisyys."
-    );
+    alert("Anna 4. saranan etäisyys.");
     return;
   }
 }
