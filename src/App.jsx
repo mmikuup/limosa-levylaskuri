@@ -1,16 +1,17 @@
 import { useState, useEffect } from "react";
 import emailjs from "@emailjs/browser";
 import melamiinip3 from "./assets/melamiinip3.jpg";
-import mattamusta from "./assets/0190.jpg";
-import tammi from "./assets/3213.jpg";
-import vitivalkoinen from "./assets/C974.jfif";
+import purvalkoinen from "./assets/purvalkoinen.jpg";
+import mattamusta from "./assets/mattamusta.jpg";
+import tammi from "./assets/tammi.jpg";
+import vitivalkoinen from "./assets/vitivalkoinen.jpg";
 import kultatammi from "./assets/K003.jpg";
-import vaaleapähkinä from "./assets/K206.jpg";
+import vaaleapähkinä from "./assets/vaaleapähkinä.jpg";
 import mustaoxidoitu from "./assets/K205.jpg";
-import betoni from "./assets/K350.jpg";
-import vaaleakivi from "./assets/K538.jpg";
-import harmaakivi from "./assets/K539.jpg";
-import galaxi from "./assets/K553.jpg";
+import betoni from "./assets/betoni.jpg";
+import vaaleakivi from "./assets/vaaleakivi.jpg";
+import harmaakivi from "./assets/harmaakivi.jpg";
+import galaxi from "./assets/galaxi.jpg";
 import mustapronssi from "./assets/K698PN.jpg";
 import calacatta from "./assets/K699PN.jpg";
 import portobello from "./assets/K703PN.jpg";
@@ -86,6 +87,13 @@ function App() {
   const [deliveryConfirmed, setDeliveryConfirmed] = useState(false);
 
   const [showInfoCard, setShowInfoCard] = useState(false);
+
+  const [drillingType, setDrillingType] = useState("none");
+  const [bottomHinge, setBottomHinge] = useState("");
+  const [topHinge, setTopHinge] = useState("");
+  const [extraHinges, setExtraHinges] = useState("0");
+  const [thirdHinge, setThirdHinge] = useState("");
+  const [fourthHinge, setFourthHinge] = useState("");
 
 
 const [phone, setPhone] =
@@ -203,7 +211,7 @@ purkalustelevyt: [
     name: "Valkoinen vedenkestävä PUR 16mm",
     shortName: "Valkoinen PUR 16mm",
     pricePerM2: 100,
-    image: melamiinip3,
+    image: purvalkoinen,
   },
   {
     name: "Tammi vedenkestävä PUR 16mm",
@@ -269,13 +277,13 @@ purwckalusteet: [
         name: "Valkoinen",
         price600: 185,
         price800: 195,
-        
+        image: peilikaappi,
       },
       {
         name: "Tammi",
         price600: 185,
         price800: 195,
-    
+        image: peilikaappi,
       },
     ],
   },
@@ -733,6 +741,7 @@ const displayName =
 
   const hingeDrillingPrice = 6;
   const edgePricePerM = 3;
+
   const minimumPrice =
   productGroup === "laminaattitasot"
     ? 35
@@ -742,11 +751,8 @@ const displayName =
     ? 30
     : productGroup === "kalustehelat"
     ? 0
-    : productGroup === "kalusteovet" &&
-      hingeDrilling
-    ? 26
     : 20;
-``
+
 
   const area =
     ((Number(height) || 0) *
@@ -879,7 +885,22 @@ if (selectedProduct?.pricingType === "countertop") {
     edgePricePerM;
 
 }
+
 let drillingPrice = 0;
+
+if (
+  productGroup === "kalusteovet" &&
+  drillingType === "standard"
+) {
+  drillingPrice = 6;
+}
+
+if (
+  productGroup === "kalusteovet" &&
+  drillingType === "custom"
+) {
+  drillingPrice = 10;
+}
 
 const getShippingPrice = (city) => {
   const c = city.trim().toLowerCase();
@@ -887,52 +908,22 @@ const getShippingPrice = (city) => {
   const zone1 = [
     "liminka",
     "lumijoki",
-    "siikajoki",
     "tyrnävä",
     "kempele",
   ];
 
   const zone2 = [
     "oulu",
+    "siikajoki",
     "muhos",
     "utajärvi",
-    "vaala",
-    "siikalatva",
     "raahe",
     "hailuoto",
-    "pyhäjoki",
   ];
 
-  const zone3 = [
-    "ii",
-    "pudasjärvi",
-    "pyhäntä",
-    "kärsämäki",
-    "haapavesi",
-    "oulainen",
-    "merijärvi",
-    "kalajoki",
-    "alavieska",
-    "ylivieska",
-  ];
-
-  const zone4 = [
-    "sievi",
-    "reisjärvi",
-    "haapajärvi",
-    "pyhäjärvi",
-    "taivalkoski",
-  ];
-
-  const zone5 = [
-    "kuusamo",
-  ];
-
-  if (zone1.includes(c)) return 150;
-  if (zone2.includes(c)) return 230;
-  if (zone3.includes(c)) return 300;
-  if (zone4.includes(c)) return 500;
-  if (zone5.includes(c)) return 600;
+  if (zone1.includes(c)) return 120;
+  if (zone2.includes(c)) return 180;
+  
 
   return null;
 };
@@ -965,14 +956,12 @@ const isStandardWidth =
 
   const calculatedPrice =
   boardPrice +
-  edgePrice +
-  drillingPrice;
-
+  edgePrice;
 
   const piecePrice = Math.max(
     calculatedPrice,
     minimumPrice
-  );
+  ) + drillingPrice;
 
   const wcDepth =
   product.toLowerCase().includes("yläkaappi")
@@ -1140,6 +1129,36 @@ const selectedCabinetColor =
     (color) => color.name === cabinetColor
   );
 
+if (drillingType === "custom") {
+
+  if (!bottomHinge || !topHinge) {
+    alert(
+      "Anna 1. ja 2. saranan etäisyydet."
+    );
+    return;
+  }
+
+  if (
+    Number(extraHinges) >= 1 &&
+    !thirdHinge
+  ) {
+    alert(
+      "Anna 3. saranan etäisyys."
+    );
+    return;
+  }
+
+  if (
+    Number(extraHinges) >= 2 &&
+    !fourthHinge
+  ) {
+    alert(
+      "Anna 4. saranan etäisyys."
+    );
+    return;
+  }
+}
+
   const item = {
     product,
     productGroup,
@@ -1155,7 +1174,14 @@ const selectedCabinetColor =
     topEdge,
     bottomEdge,
     backEdgeUpgrade,
+    grainDirection,
     hingeDrilling,
+    drillingType,
+    bottomHinge,
+    topHinge,
+    extraHinges,
+    thirdHinge,
+    fourthHinge,
     totalPrice,
     image:
   selectedCabinetColor?.image ||
@@ -1178,7 +1204,13 @@ const selectedCabinetColor =
     line.topEdge === item.topEdge &&
     line.bottomEdge === item.bottomEdge &&
     line.backEdgeUpgrade === item.backEdgeUpgrade &&
-    line.hingeDrilling === item.hingeDrilling
+    line.hingeDrilling === item.hingeDrilling &&
+    line.drillingType === item.drillingType &&
+    line.bottomHinge === item.bottomHinge &&
+    line.topHinge === item.topHinge &&
+    line.extraHinges === item.extraHinges &&
+    line.thirdHinge === item.thirdHinge &&
+    line.fourthHinge === item.fourthHinge
 );
 
 if (existingIndex >= 0) {
@@ -1203,6 +1235,11 @@ if (existingIndex >= 0) {
   setHeight("");
   setWidth("");
   setQuantity(1);
+  setBottomHinge("");
+  setTopHinge("");
+  setExtraHinges("0");
+  setThirdHinge("");
+  setFourthHinge("");
 
   setLeftEdge(false);
   setRightEdge(false);
@@ -1316,6 +1353,11 @@ item.productGroup === "purwckalusteet"
   ? `Syvyys: ${item.wcDepth} mm`
   : null,
 
+item.productGroup === "kalusteovet" &&
+item.grainDirection
+  ? `Syykuvion suunta: ${item.grainDirection}`
+  : null,
+
   item.productGroup === "kalustehelat" &&
   item.hardwareGroup === "vetimet" &&
   item.product !== "Vedinsapluuna" &&
@@ -1343,9 +1385,36 @@ item.productGroup === "laminaattitasot"
     : null,
 
   item.productGroup === "kalusteovet" &&
-  item.hingeDrilling
-    ? "Vakio saranaporaus"
-    : null,
+item.drillingType === "standard"
+  ? "Saranaporaus: Vakio saranaporaus"
+  : null,
+
+item.productGroup === "kalusteovet" &&
+item.drillingType === "custom"
+  ? "Saranaporaus: Oma poraus"
+  : null,
+
+item.productGroup === "kalusteovet" &&
+item.drillingType === "custom"
+  ? `1. sarana alareunasta: ${item.bottomHinge} mm`
+  : null,
+
+item.productGroup === "kalusteovet" &&
+item.drillingType === "custom"
+  ? `2. sarana yläreunasta: ${item.topHinge} mm`
+  : null,
+
+item.productGroup === "kalusteovet" &&
+item.drillingType === "custom" &&
+Number(item.extraHinges) >= 1
+  ? `3. sarana alareunasta: ${item.thirdHinge} mm`
+  : null,
+
+item.productGroup === "kalusteovet" &&
+item.drillingType === "custom" &&
+Number(item.extraHinges) >= 2
+  ? `4. sarana alareunasta: ${item.fourthHinge} mm`
+  : null,
 
   (
     item.productGroup === "kalustelevyt" ||
@@ -1546,7 +1615,6 @@ marginBottom: "30px",
 }}
 >
 Tilaa mittatarkat kalusteovet, kalustelevyt, välitilalevyt, laminaattitasot, kalustehelat ja kylpyhuonekalusteet helposti verkosta.
-Tuotantoaika 3-7 arkipäivää
 </p>
 
 <div
@@ -1598,31 +1666,31 @@ Tuotantoaika 3-7 arkipäivää
   </option>
 
   <option value="kalusteovet">
-    Kalusteovet
+    Kalusteovet (3-7 työpäivää)
   </option>
 
   <option value="kalustelevyt">
-    Melamiinipintaiset lastulevyt
+    Melamiinipintaiset lastulevyt (3-7 työpäivää)
   </option>
 
   <option value="purkalustelevyt">
-  Vedenkestävät PUR-kalustelevyt
+  Vedenkestävät PUR-kalustelevyt (3-7 työpäivää)
   </option>
 
   <option value="laminaattitasot">
-    Suorareunaiset laminaattitasot
+    Suorareunaiset laminaattitasot (2-3 viikkoa)
   </option>
 
   <option value="välitilalevyt">
-    Välitilalevyt
+    Välitilalevyt (3-7pv)
   </option>
 
   <option value="purwckalusteet">
-  Vedenkestävät kylpyhuonekalusteet
+  Vedenkestävät kylpyhuonekalusteet (3-7 työpäivää)
   </option>
 
   <option value="kalustehelat">
-    Kalustehelat
+    Kalustehelat (3-7 työpäivää)
   </option>
 </select>
   </div>
@@ -2126,38 +2194,7 @@ alignItems: "end",
   </p>
 )}
 
-{productGroup === "kalusteovet" && (
-  <>
-    <h3>Saranaporaus</h3>
-
-    <label>
-      <input
-        type="checkbox"
-        checked={hingeDrilling}
-        onChange={(e) =>
-          setHingeDrilling(e.target.checked)
-        }
-      />
-      Vakio saranaporaus
-    </label>
-
-    <p
-      style={{
-        fontSize: "clamp(14px, 1.8vw, 16px)",
-        color: "#666",
-        lineHeight: "1.5",
-        marginTop: "8px",
-      }}
-    >
-      Alle 500 mm korkeissa ovissa saranaporaukset
-      tehdään 60 mm päähän oven ylä- ja alareunasta.
-      Yli 500 mm korkeissa ovissa poraukset tehdään
-      100 mm päähän oven ylä- ja alareunasta.
-      Yli 1200 mm korkeisiin oviin tehdään lisäksi
-      kolmas saranaporaus oven keskikohtaan.
-    </p>
-
-    {product === "Hiekkatammi melamiini 16mm" && (
+{product === "Hiekkatammi melamiini 16mm" && (
 <>
 <h3>Syykuvion suunta</h3>
  
@@ -2196,6 +2233,148 @@ alignItems: "end",
   </label>
 </div>
 </>
+)}
+
+{productGroup === "kalusteovet" && (
+  <>
+    <h3>Saranaporaus</h3>
+<div
+  style={{
+    display: "flex",
+    justifyContent: "center",
+    gap: "20px",
+    flexWrap: "wrap",
+    marginTop: "10px",
+  }}
+>
+  <label>
+    <input
+      type="radio"
+      name="drillingType"
+      value="none"
+      checked={drillingType === "none"}
+      onChange={(e) =>
+        setDrillingType(e.target.value)
+      }
+    />
+    Ei saranaporausta
+  </label>
+
+  <label>
+    <input
+      type="radio"
+      name="drillingType"
+      value="standard"
+      checked={drillingType === "standard"}
+      onChange={(e) =>
+        setDrillingType(e.target.value)
+      }
+    />
+    Vakio saranaporaus
+  </label>
+
+  <label>
+    <input
+      type="radio"
+      name="drillingType"
+      value="custom"
+      checked={drillingType === "custom"}
+      onChange={(e) =>
+        setDrillingType(e.target.value)
+      }
+    />
+    Oma poraus
+  </label>
+</div>
+
+{drillingType === "standard" && (
+    <p
+      style={{
+        fontSize: "clamp(14px, 1.8vw, 16px)",
+        color: "#666",
+        lineHeight: "1.5",
+        marginTop: "8px",
+      }}
+    >
+      Alle 500 mm korkeissa ovissa saranaporaukset
+      tehdään 60 mm päähän oven ylä- ja alareunasta.
+      Yli 500 mm korkeissa ovissa poraukset tehdään
+      100 mm päähän oven ylä- ja alareunasta.
+      Yli 1200 mm korkeisiin oviin tehdään lisäksi
+      kolmas saranaporaus oven keskikohtaan.
+    </p>
+)}
+
+{drillingType === "custom" && (
+  <>
+    <input
+      type="number"
+      placeholder="1. saranan etäisyys oven alareunasta (mm)"
+      value={bottomHinge}
+      onChange={(e) => setBottomHinge(e.target.value)}
+      style={{
+        width: "100%",
+        padding: "12px",
+        marginBottom: "10px",
+        boxSizing: "border-box",
+      }}
+    />
+
+    <input
+      type="number"
+      placeholder="2. saranan etäisyys oven yläreunasta (mm)"
+      value={topHinge}
+      onChange={(e) => setTopHinge(e.target.value)}
+      style={{
+        width: "100%",
+        padding: "12px",
+        marginBottom: "10px",
+        boxSizing: "border-box",
+      }}
+    />
+    <select
+  value={extraHinges}
+  onChange={(e) => setExtraHinges(e.target.value)}
+  style={{
+    width: "100%",
+    padding: "12px",
+    marginBottom: "10px",
+    boxSizing: "border-box",
+  }}
+>
+  <option value="0">Lisäsaranat: 0 kpl</option>
+  <option value="1">Lisäsaranat: 1 kpl</option>
+  <option value="2">Lisäsaranat: 2 kpl</option>
+</select>
+{Number(extraHinges) >= 1 && (
+  <input
+    type="number"
+    placeholder="3. saranan etäisyys oven alareunasta (mm)"
+    value={thirdHinge}
+    onChange={(e) => setThirdHinge(e.target.value)}
+    style={{
+      width: "100%",
+      padding: "12px",
+      marginBottom: "10px",
+      boxSizing: "border-box",
+    }}
+  />
+)}
+{Number(extraHinges) >= 2 && (
+  <input
+    type="number"
+    placeholder="4. saranan etäisyys oven alareunasta (mm)"
+    value={fourthHinge}
+    onChange={(e) => setFourthHinge(e.target.value)}
+    style={{
+      width: "100%",
+      padding: "12px",
+      marginBottom: "10px",
+      boxSizing: "border-box",
+    }}
+  />
+)}
+  </>
 )}
   </>
 )}
@@ -2308,6 +2487,7 @@ alignItems: "end",
       joka soveltuu 16mm paksulle ovelle.
     </p>
 )}
+
 
       <hr />
 
@@ -2473,6 +2653,12 @@ alignItems: "end",
   )
 )}
 
+{item.grainDirection && (
+  <p>
+    Syykuvion suunta: {item.grainDirection}
+  </p>
+)}
+
 {item.productGroup === "purwckalusteet" && (
   <p>
     Korkeus: {item.height} mm<br />
@@ -2499,11 +2685,41 @@ alignItems: "end",
     }
   </p>
 )}
+
 {item.productGroup === "kalusteovet" &&
-  item.hingeDrilling && (
+ item.drillingType === "standard" && (
+  <p>
+    Saranaporaus: Vakio saranaporaus
+  </p>
+)}
+
+{item.productGroup === "kalusteovet" &&
+ item.drillingType === "custom" && (
+  <>
     <p>
-      Vakio saranaporaus
+      Saranaporaus: Oma poraus
     </p>
+
+    <p>
+      1. sarana alareunasta: {item.bottomHinge} mm
+    </p>
+
+    <p>
+      2. sarana yläreunasta: {item.topHinge} mm
+    </p>
+
+    {Number(item.extraHinges) >= 1 && (
+      <p>
+        3. sarana alareunasta: {item.thirdHinge} mm
+      </p>
+    )}
+
+    {Number(item.extraHinges) >= 2 && (
+      <p>
+        4. sarana alareunasta: {item.fourthHinge} mm
+      </p>
+    )}
+  </>
 )}
 
 {item.productGroup === "laminaattitasot" &&
@@ -2795,7 +3011,7 @@ Poista
   >
     Toimituksen laskenta tähän osoitteeseen ei onnistunut
     automaattisesti. Voit pyytää halutessasi rahdin hinnan
-    numerosta 045 856 5794.
+    numerosta 045 856 5794. Nouto Limingan varastolta on aina maksuton.
   </p>
 )}
 
