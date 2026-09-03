@@ -729,6 +729,11 @@ useEffect(() => {
 }, [productGroup, selectedProduct]);
 
 useEffect(() => {
+
+if (!productGroup) {
+  setProduct("");
+}
+
   setHeight("");
   setWidth("");
   setQuantity(1);
@@ -1063,6 +1068,26 @@ if (
 
 function addToOrder() {
 
+if (!productGroup) {
+  alert("Valitse tuoteryhmä.");
+  return;
+}
+
+if (!product) {
+  alert("Valitse tuote.");
+  return;
+}
+if (
+  productGroup !== "kalustehelat" &&
+  (!height || !width)
+) {
+  alert("Anna korkeus ja leveys.");
+  return;
+}
+if (!quantity || Number(quantity) < 1) {
+  alert("Anna määrä.");
+  return;
+}
 if (
   productGroup === "kalustehelat" &&
   hardwareGroup === "vetimet" &&
@@ -1829,12 +1854,16 @@ Tilaa mittatarkat kalusteovet, kalustelevyt, välitilalevyt, laminaattitasot, ka
 
   setProductGroup(group);
 
+  if (group) {
   const firstProduct =
     productGroups[group]?.[0];
 
   if (firstProduct) {
     setProduct(firstProduct.name);
   }
+} else {
+  setProduct("");
+}
 
   if (group === "purwckalusteet") {
     setHeight("565");
@@ -1852,6 +1881,10 @@ Tilaa mittatarkat kalusteovet, kalustelevyt, välitilalevyt, laminaattitasot, ka
     fontWeight: "500",
   }}
 >
+<option value="">
+    Valitse tuoteryhmä
+  </option>
+
   <option value="kalusteovet">
     Kalusteovet (3-7 työpäivää)
   </option>
