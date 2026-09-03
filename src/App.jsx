@@ -2,16 +2,16 @@ import { useState, useEffect } from "react";
 import emailjs from "@emailjs/browser";
 import melamiinip3 from "./assets/melamiinip3.jpg";
 import purvalkoinen from "./assets/purvalkoinen.jpg";
-import mattamusta from "./assets/mattamusta.jpg";
-import tammi from "./assets/tammi.jpg";
-import vitivalkoinen from "./assets/vitivalkoinen.jpg";
+import mattamusta from "./assets/0190.jpg";
+import tammi from "./assets/3213.jpg";
+import vitivalkoinen from "./assets/C974.jfif";
 import kultatammi from "./assets/K003.jpg";
-import vaaleapähkinä from "./assets/vaaleapähkinä.jpg";
+import vaaleapähkinä from "./assets/K206.jpg";
 import mustaoxidoitu from "./assets/K205.jpg";
-import betoni from "./assets/betoni.jpg";
-import vaaleakivi from "./assets/vaaleakivi.jpg";
-import harmaakivi from "./assets/harmaakivi.jpg";
-import galaxi from "./assets/galaxi.jpg";
+import betoni from "./assets/K350.jpg";
+import vaaleakivi from "./assets/K538.jpg";
+import harmaakivi from "./assets/K539.jpg";
+import galaxi from "./assets/K553.jpg";
 import mustapronssi from "./assets/K698PN.jpg";
 import calacatta from "./assets/K699PN.jpg";
 import portobello from "./assets/K703PN.jpg";
@@ -48,7 +48,12 @@ import purhyllykomerokortti from "./assets/Tuotekortti pur-hyllykomero.png";
 import puralakaappiovillakortti from "./assets/Tuotekortti pur-alakaappi ovilla.png";
 import puralakaappilaatikoillakortti from "./assets/Tuotekortti pur-alakaappi laatikoilla.png";
 import puryläkaappipeiliovillakortti from "./assets/Tuotekortti pur-yläkaappi peiliovilla.png";
-
+import välitilatammi from "./assets/3213.jpg";
+import välitilamattamusta from "./assets/0190.jpg";
+import välitilavaaleakivi from "./assets/K538.jpg";
+import välitilaharmaakivi from "./assets/K539.jpg";
+import välitilabetoni from "./assets/K350.jpg";
+import välitilagalaxi from "./assets/K553.jpg";
 
 
 
@@ -94,6 +99,8 @@ function App() {
   const [extraHinges, setExtraHinges] = useState("0");
   const [thirdHinge, setThirdHinge] = useState("");
   const [fourthHinge, setFourthHinge] = useState("");
+
+  const [termsAccepted, setTermsAccepted] = useState(false);
 
 
 const [phone, setPhone] =
@@ -492,7 +499,7 @@ välitilalevyt: [
   pricingType: "piece",
   piecePrice600: 165,
   piecePrice1220: 260,
-  image: mattamusta,
+  image: välitilamattamusta,
 },
 {
   name: "Tammi",
@@ -500,7 +507,7 @@ välitilalevyt: [
   pricingType: "piece",
   piecePrice600: 165,
   piecePrice1220: 260,
-  image: tammi,
+  image: välitilatammi,
 },
 {
   name: "Kultatammi",
@@ -524,7 +531,7 @@ välitilalevyt: [
   pricingType: "piece",
   piecePrice600: 165,
   piecePrice1220: 260,
-  image: betoni,
+  image: välitilabetoni,
 },
 {
   name: "Vaalea kivi",
@@ -532,7 +539,7 @@ välitilalevyt: [
   pricingType: "piece",
   piecePrice600: 165,
   piecePrice1220: 260,
-  image: vaaleakivi,
+  image: välitilavaaleakivi,
 },
 {
   name: "Harmaa kivi",
@@ -540,7 +547,7 @@ välitilalevyt: [
   pricingType: "piece",
   piecePrice600: 165,
   piecePrice1220: 260,
-  image: harmaakivi,
+  image: välitilaharmaakivi,
 },
 {
   name: "Galaxi",
@@ -548,7 +555,7 @@ välitilalevyt: [
   pricingType: "piece",
   piecePrice600: 165,
   piecePrice1220: 260,
-  image: galaxi,
+  image: välitilagalaxi,
 },
 {
   name: "Musta pronssi",
@@ -1493,6 +1500,7 @@ const totalWithVat = grandTotal + vat;
 
 function submitQuoteRequest() {
 
+
   const orderNumber = `LK-${new Date().getFullYear()}-${Date.now()
   .toString()
   .slice(-5)}`;
@@ -1522,6 +1530,12 @@ return;
     return;
   }
 
+  if (!termsAccepted) {
+  alert(
+    "Hyväksy tilaus- ja palautusehdot ennen tilauksen lähettämistä."
+  );
+  return;
+}
 
   const productsText = orderLines
   .map((item, index) => {
@@ -3318,12 +3332,50 @@ Poista
   }}
 >
 </div>
-
 )}
 
-  <p>*Annettuja tietoja käytetään ainoastaan tilauksen käsittelyyn.</p>
-  <p>**Määrämittatilauksena tehdyillä tuotteilla ei ole vaihto- eikä palautusoikeutta.</p>
-   <p>***Viimeistelemällä tilauksen hyväksyt nämä ehdot</p>
+ <div
+  style={{
+    marginTop: "20px",
+    padding: "15px",
+    backgroundColor: "#f8f9fa",
+    border: "1px solid #dee2e6",
+    borderRadius: "5px",
+    textAlign: "left",
+    fontSize: "14px",
+    lineHeight: "1.6",
+  }}
+>
+  <strong>Huomio:</strong> Kaikki tuotteet valmistetaan asiakkaan
+  ilmoittamien mittojen ja valintojen perusteella. Tarkistathan
+  mitat huolellisesti ennen tilauksen lähettämistä.
+  Määrämittaisilla tuotteilla ei ole peruutus, vaihto- eikä palautusoikeutta.
+  Annettuja asiakastietoja käytetään ainoastaan tilauksen käsittelyyn.
+</div>
+
+<label
+  style={{
+    display: "flex",
+    alignItems: "flex-start",
+    gap: "10px",
+    marginTop: "15px",
+    fontSize: "14px",
+    textAlign: "left",
+  }}
+>
+  <input
+    type="checkbox"
+    checked={termsAccepted}
+    onChange={(e) =>
+      setTermsAccepted(e.target.checked)
+    }
+  />
+
+  <span>
+    Olen tarkistanut tilauksen tiedot ja tutustunut yllä oleviin
+    tilaus- ja palautusehtoihin.
+  </span>
+</label> 
   
 <button
 
@@ -3340,6 +3392,7 @@ Poista
     marginTop: "20px",
   }}
 >
+
   Lähetä tilaus
 </button>
 
