@@ -254,14 +254,14 @@ purwckalusteet: [
     colors: [
       {
         name: "Valkoinen",
-        price600: 250,
-        price800: 265,
+        price600: 365,
+        price800: 385,
         image: wcovet,
       },
       {
         name: "Tammi",
-        price600: 250,
-        price800: 265,
+        price600: 365,
+        price800: 385,
         image: wcovet,
       },
     ],
@@ -276,14 +276,14 @@ purwckalusteet: [
     colors: [
       {
         name: "Valkoinen",
-        price600: 350,
-        price800: 365,
+        price600: 435,
+        price800: 460,
         image: wclaatikot,
       },
       {
         name: "Tammi",
-        price600: 350,
-        price800: 365,
+        price600: 435,
+        price800: 460,
         image: wclaatikot,
       },
     ],
@@ -298,14 +298,14 @@ purwckalusteet: [
     colors: [
       {
         name: "Valkoinen",
-        price600: 185,
-        price800: 195,
+        price600: 310,
+        price800: 335,
         image: peilikaappi,
       },
       {
         name: "Tammi",
-        price600: 185,
-        price800: 195,
+        price600: 310,
+        price800: 335,
         image: peilikaappi,
       },
     ],
@@ -320,14 +320,14 @@ purwckalusteet: [
     colors: [
       {
         name: "Valkoinen",
-        price600: 225,
-        price800: 230,
+        price600: 285,
+        price800: 310,
         image: peilikaappi,
       },
       {
         name: "Tammi",
-        price600: 225,
-        price800: 230,
+        price600: 285,
+        price800: 310,
         image: peilikaappi,
       },
     ],
@@ -342,14 +342,14 @@ purwckalusteet: [
     colors: [
       {
         name: "Valkoinen",
-        price300: 335,
-        price400: 350,
+        price300: 420,
+        price400: 438,
         image: wckomero,
       },
       {
         name: "Tammi",
-        price300: 335,
-        price400: 350,
+        price300: 420,
+        price400: 438,
         image: wckomero,
       },
     ],
