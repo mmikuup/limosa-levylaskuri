@@ -262,7 +262,6 @@ purwckalusteet: [
         name: "Tammi",
         price600: 365,
         price800: 385,
-        image: wcovet,
       },
     ],
   },
@@ -284,7 +283,6 @@ purwckalusteet: [
         name: "Tammi",
         price600: 435,
         price800: 460,
-        image: wclaatikot,
       },
     ],
   },
@@ -300,13 +298,11 @@ purwckalusteet: [
         name: "Valkoinen",
         price600: 310,
         price800: 335,
-        image: peilikaappi,
       },
       {
         name: "Tammi",
         price600: 310,
         price800: 335,
-        image: peilikaappi,
       },
     ],
   },
@@ -350,7 +346,6 @@ purwckalusteet: [
         name: "Tammi",
         price300: 420,
         price400: 438,
-        image: wckomero,
       },
     ],
   },
@@ -2072,7 +2067,7 @@ Tilaa mittatarkat kalusteovet, kalustelevyt, välitilalevyt, laminaattitasot, ka
       lineHeight: "1.4",
     }}
   >
-    Tammen värisissä kalusteissa ovien syysuunta on pysty ja
+    * Tammen väriset tuotekuvat kalusteista ovat tulossa myöhemmin. **Tammen värisissä kalusteissa ovien syysuunta on pysty ja
     laatikon etusarjojen syysuunta on vaaka. Esimerkiksi
     "PUR-hyllykomero" -tuotteessa oven syysuunta on pystysuuntainen ja 
     "PUR-alakaappi laatikoilla" -tuotteessa laatikoiden etusarjojen syysuunta on vaakasuuntainen.
