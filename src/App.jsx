@@ -114,50 +114,56 @@ const productGroups = {
   {
     name: "Valkoinen kosteudenkestävä melamiini soft P3 16mm",
     shortName: "Valkoinen mel P3 BS 16mm",
-    pricePerM2: 64,
+    pricePerM2: 56,
     image: valkoinensoft,
   },
   {
     name: "Cashmere melamiini 16mm",
     shortName: "Cashmere mel 16mm",
-    pricePerM2: 64,
+    pricePerM2: 56,
     image: cashmere,
   },
   {
     name: "Vanilja melamiini 16mm",
     shortName: "Vanilja mel 16mm",
-    pricePerM2: 64,
+    pricePerM2: 56,
     image: vanilja,
   },
   {
     name: "Satiini melamiini (matta) 16mm",
     shortName: "Satiini mel 16mm",
-    pricePerM2: 64,
+    pricePerM2: 56,
     image: satiini,
   },
   {
     name: "Hiekkatammi melamiini 16mm",
     shortName: "Hiekkatammi mel 16mm",
-    pricePerM2: 64,
+    pricePerM2: 56,
     image: hiekkatammi,
+    requiresGrainDirection: true,
   },
   {
     name: "Harmaa melamiini (matta) 16mm",
     shortName: "Harmaa mel 16mm",
-    pricePerM2: 64,
+    pricePerM2: 56,
     image: keskiharmaa,
   },
   {
     name: "Valkoinen vedenkestävä PUR 16mm",
     shortName: "Valkoinen PUR 16mm",
-    pricePerM2: 100,
-    image: melamiinip3,
+    pricePerM2: 170,
+    image: purvalkoinen,
   },
   {
     name: "Tammi vedenkestävä PUR 16mm",
     shortName: "Tammi PUR 16mm",
-    pricePerM2: 100,
+    pricePerM2: 170,
     image: hiekkatammi,
+    requiresGrainDirection: true,
+    maxHeightVertical: 1920,
+    maxWidthVertical: 1195,
+    maxHeightHorizontal: 1200,
+    maxWidthHorizontal: 1195,
   },
 ],
 
@@ -196,7 +202,12 @@ kalustelevyt: [
     name: "Hiekkatammi melamiini 16mm",
     shortName: "Hiekkatammi mel 16mm",
     pricePerM2: 52,
+    maxHeightVertical: 2750,
+    maxWidthVertical: 2000,
+    maxHeightHorizontal: 2000,
+    maxWidthHorizontal: 2750,
     image: hiekkatammi,
+    requiresGrainDirection: true
   },
   {
     name: "Harmaa melamiini (matta) 16mm",
@@ -210,14 +221,19 @@ purkalustelevyt: [
   {
     name: "Valkoinen vedenkestävä PUR 16mm",
     shortName: "Valkoinen PUR 16mm",
-    pricePerM2: 100,
+    pricePerM2: 150,
     image: purvalkoinen,
   },
   {
     name: "Tammi vedenkestävä PUR 16mm",
     shortName: "Tammi PUR 16mm",
-    pricePerM2: 100,
+    pricePerM2: 150,
     image: hiekkatammi,
+    requiresGrainDirection: true,
+    maxHeightVertical: 2400,
+    maxWidthVertical: 1200,
+    maxHeightHorizontal: 1200,
+    maxWidthHorizontal: 2400,
   },
 ],
 purwckalusteet: [
@@ -337,7 +353,7 @@ laminaattitasot: [
   name: "Viti valkoinen",
   shortName: "Viti valkoinen 30mm",
   pricingType: "countertop",
-  price600: 125,
+  price600: 114,
   price1200: 199,
   backEdgePricePerMeter: 7,
   image: vitivalkoinen,
@@ -346,7 +362,7 @@ laminaattitasot: [
   name: "Matta musta",
   shortName: "Matta musta 30mm",
   pricingType: "countertop",
-  price600: 155,
+  price600: 135,
   price1200: 239,
   backEdgePricePerMeter: 7,
   image: mattamusta,
@@ -355,7 +371,7 @@ laminaattitasot: [
   name: "Tammi",
   shortName: "Tammi 30mm",
   pricingType: "countertop",
-  price600: 155,
+  price600: 135,
   price1200: 239,
   backEdgePricePerMeter: 7,
   image: tammi,
@@ -364,7 +380,7 @@ laminaattitasot: [
   name: "Kultatammi",
   shortName: "Kultatammi 30mm",
   pricingType: "countertop",
-  price600: 129,
+  price600: 114,
   price1200: 199,
   backEdgePricePerMeter: 7,
   image: kultatammi,
@@ -373,7 +389,7 @@ laminaattitasot: [
   name: "Vaalea pähkinä",
   shortName: "Vaalea pähkinä 30mm",
   pricingType: "countertop",
-  price600: 129,
+  price600: 114,
   price1200: 199,
   backEdgePricePerMeter: 7,
   image: vaaleapähkinä,
@@ -382,7 +398,7 @@ laminaattitasot: [
   name: "Musta oxidoitu",
   shortName: "Musta oxidoitu 30mm",
   pricingType: "countertop",
-  price600: 129,
+  price600: 114,
   price1200: 199,
   backEdgePricePerMeter: 7,
   image: mustaoxidoitu,
@@ -391,7 +407,7 @@ laminaattitasot: [
   name: "Betoni",
   shortName: "Betoni 30mm",
   pricingType: "countertop",
-  price600: 129,
+  price600: 114,
   price1200: 199,
   backEdgePricePerMeter: 7,
   image: betoni,
@@ -400,7 +416,7 @@ laminaattitasot: [
   name: "Vaalea kivi",
   shortName: "Vaalea kivi 30mm",
   pricingType: "countertop",
-  price600: 129,
+  price600: 114,
   price1200: 199,
   backEdgePricePerMeter: 7,
   image: vaaleakivi,
@@ -409,7 +425,7 @@ laminaattitasot: [
   name: "Harmaa kivi",
   shortName: "Harmaa kivi 30mm",
   pricingType: "countertop",
-  price600: 129,
+  price600: 114,
   price1200: 199,
   backEdgePricePerMeter: 7,
   image: harmaakivi,
@@ -418,7 +434,7 @@ laminaattitasot: [
   name: "Galaxi",
   shortName: "Galaxi 30mm",
   pricingType: "countertop",
-  price600: 129,
+  price600: 114,
   price1200: 199,
   backEdgePricePerMeter: 7,
   image: galaxi,
@@ -427,7 +443,7 @@ laminaattitasot: [
   name: "Musta pronssi",
   shortName: "Musta pronssi 30mm",
   pricingType: "countertop",
-  price600: 129,
+  price600: 114,
   price1200: 199,
   backEdgePricePerMeter: 7,
   image: mustapronssi,
@@ -436,7 +452,7 @@ laminaattitasot: [
   name: "Calacatta",
   shortName: "Calacatta 30mm",
   pricingType: "countertop",
-  price600: 129,
+  price600: 114,
   price1200: 199,
   backEdgePricePerMeter: 7,
   image: calacatta,
@@ -445,7 +461,7 @@ laminaattitasot: [
   name: "Portobello",
   shortName: "Portobello 30mm",
   pricingType: "countertop",
-  price600: 129,
+  price600: 114,
   price1200: 199,
   backEdgePricePerMeter: 7,
   image: portobello,
@@ -454,7 +470,7 @@ laminaattitasot: [
   name: "Perlino",
   shortName: "Perlino 30mm",
   pricingType: "countertop",
-  price600: 129,
+  price600: 114,
   price1200: 199,
   backEdgePricePerMeter: 7,
   image: perlino,
@@ -463,7 +479,7 @@ laminaattitasot: [
   name: "Stonehaven",
   shortName: "Stonehaven 30mm",
   pricingType: "countertop",
-  price600: 129,
+  price600: 114,
   price1200: 199,
   backEdgePricePerMeter: 7,
   image: stonehaven,
@@ -712,6 +728,27 @@ useEffect(() => {
   }
 }, [productGroup, selectedProduct]);
 
+useEffect(() => {
+  setHeight("");
+  setWidth("");
+  setQuantity(1);
+
+  setBottomHinge("");
+  setTopHinge("");
+  setExtraHinges("0");
+  setThirdHinge("");
+  setFourthHinge("");
+
+  setLeftEdge(false);
+  setRightEdge(false);
+  setTopEdge(false);
+  setBottomEdge(false);
+
+  setGrainDirection("");
+  setDrillingType("none");
+
+}, [productGroup]);
+
   const selectedHandle =
   hardwareProducts?.[hardwareGroup]?.find(
     (item) => item.name === product
@@ -740,18 +777,20 @@ const displayName =
   selectedProduct?.name;
 
   const hingeDrillingPrice = 6;
-  const edgePricePerM = 3;
+  const edgePricePerM = 4;
 
   const minimumPrice =
   productGroup === "laminaattitasot"
-    ? 35
+    ? 114
     : productGroup === "välitilalevyt"
-    ? 89
+    ? 165
     : productGroup === "purkalustelevyt"
-    ? 30
+    ? 50
+    : productGroup === "kalusteovet"
+    ? 20
     : productGroup === "kalustehelat"
     ? 0
-    : 20;
+    : 15;
 
 
   const area =
@@ -833,17 +872,32 @@ if (productGroup === "purwckalusteet") {
   }
   let discountFactor = 1;
 
-if (length >= 3001) {
-  discountFactor = 0.85;
-} else if (length >= 2001) {
-  discountFactor = 0.93;
-} else if (length >= 1001) {
-  discountFactor = 0.95;
-}
 
-meterPrice = meterPrice * discountFactor;
+if (lengthMeters <= 1) {
 
   boardPrice = lengthMeters * meterPrice;
+
+} else if (lengthMeters <= 2) {
+
+  boardPrice =
+    meterPrice +
+    (lengthMeters - 1) * meterPrice * 0.90;
+
+} else if (lengthMeters <= 3) {
+
+  boardPrice =
+    meterPrice +
+    meterPrice * 0.90 +
+    (lengthMeters - 2) * meterPrice * 0.88;
+
+} else if (lengthMeters <= 4) {
+
+  boardPrice =
+    meterPrice +
+    meterPrice * 0.90 +
+    meterPrice * 0.88 +
+    (lengthMeters - 3) * meterPrice * 0.99;
+}
 
 } else if (
   selectedProduct?.pricingType === "piece"
@@ -863,10 +917,20 @@ meterPrice = meterPrice * discountFactor;
 
   let edgeLength = 0;
 
+if (productGroup === "kalusteovet") {
+
+  edgeLength =
+    (Number(height) * 2) +
+    (Number(width) * 2);
+
+} else {
+
   if (leftEdge) edgeLength += Number(height) || 0;
   if (rightEdge) edgeLength += Number(height) || 0;
   if (topEdge) edgeLength += Number(width) || 0;
   if (bottomEdge) edgeLength += Number(width) || 0;
+
+}
 
   let edgePrice = 0;
 
@@ -954,14 +1018,13 @@ const isStandardWidth =
   Number(width) === 600 ||
   Number(width) === 800;
 
-  const calculatedPrice =
-  boardPrice +
-  edgePrice;
-
-  const piecePrice = Math.max(
-    calculatedPrice,
+  const piecePrice =
+  Math.max(
+    boardPrice,
     minimumPrice
-  ) + drillingPrice;
+  ) +
+  edgePrice +
+  drillingPrice;
 
   const wcDepth =
   product.toLowerCase().includes("yläkaappi")
@@ -969,10 +1032,34 @@ const isStandardWidth =
     : 365;
 
 
-  const totalPrice =
-  productGroup === "kalustehelat"
-    ? hardwarePrice
-    : piecePrice * quantity;
+  let totalPrice = 0;
+
+if (
+  productGroup === "kalustelevyt" ||
+  productGroup === "kalusteovet" ||
+  productGroup === "purkalustelevyt"
+) {
+
+  for (let i = 1; i <= quantity; i++) {
+
+    let discount = 1;
+
+    if (i >= 6) {
+      discount = 0.93;
+    } else if (i >= 2) {
+      discount = 0.95;
+    }
+
+    totalPrice += piecePrice * discount;
+  }
+
+} else {
+
+  totalPrice =
+    productGroup === "kalustehelat"
+      ? hardwarePrice
+      : piecePrice * quantity;
+}
 
 function addToOrder() {
 
@@ -995,44 +1082,89 @@ if (!productGroup) {
 
   if (productGroup === "kalustelevyt") {
 
+  let maxHeight = 2750;
+  let maxWidth = 2000;
+
+  if (selectedProduct?.requiresGrainDirection) {
+
+    if (grainDirection === "vaaka") {
+      maxHeight =
+        selectedProduct.maxHeightHorizontal;
+
+      maxWidth =
+        selectedProduct.maxWidthHorizontal;
+
+    } else {
+
+      maxHeight =
+        selectedProduct.maxHeightVertical;
+
+      maxWidth =
+        selectedProduct.maxWidthVertical;
+    }
+  }
+
   if (
     Number(height) < 250 ||
-    Number(height) > 2750
+    Number(height) > maxHeight
   ) {
     alert(
-      "Korkeuden tulee olla välillä 250-2750 mm"
+      `Korkeuden tulee olla välillä 250-${maxHeight} mm`
     );
     return;
   }
 
   if (
-    Number(width) < 70 ||
-    Number(width) > 2000
+    Number(width) < 100 ||
+    Number(width) > maxWidth
   ) {
     alert(
-      "Leveyden tulee olla välillä 70-2000 mm"
+      `Leveyden tulee olla välillä 100-${maxWidth} mm`
     );
     return;
   }
 }
 if (productGroup === "purkalustelevyt") {
 
+  let maxHeight = 2400;
+  let maxWidth = 1200;
+
+  if (selectedProduct?.requiresGrainDirection) {
+
+    if (grainDirection === "vaaka") {
+
+      maxHeight =
+        selectedProduct.maxHeightHorizontal;
+
+      maxWidth =
+        selectedProduct.maxWidthHorizontal;
+
+    } else {
+
+      maxHeight =
+        selectedProduct.maxHeightVertical;
+
+      maxWidth =
+        selectedProduct.maxWidthVertical;
+    }
+  }
+
   if (
     Number(height) < 250 ||
-    Number(height) > 2400
+    Number(height) > maxHeight
   ) {
     alert(
-      "Korkeuden tulee olla välillä 250-2400 mm"
+      `Korkeuden tulee olla välillä 250-${maxHeight} mm`
     );
     return;
   }
 
   if (
-    Number(width) < 70 ||
-    Number(width) > 1200
+    Number(width) < 100 ||
+    Number(width) > maxWidth
   ) {
     alert(
-      "Leveyden tulee olla välillä 70-1200 mm"
+      `Leveyden tulee olla välillä 100-${maxWidth} mm`
     );
     return;
   }
@@ -1059,22 +1191,45 @@ if (productGroup === "purwckalusteet") {
 
 if (productGroup === "kalusteovet") {
 
+  let maxHeight = 1920;
+  let maxWidth = 1195;
+
+  if (selectedProduct?.requiresGrainDirection) {
+
+    if (grainDirection === "vaaka") {
+
+      maxHeight =
+        selectedProduct.maxHeightHorizontal;
+
+      maxWidth =
+        selectedProduct.maxWidthHorizontal;
+
+    } else {
+
+      maxHeight =
+        selectedProduct.maxHeightVertical;
+
+      maxWidth =
+        selectedProduct.maxWidthVertical;
+    }
+  }
+
   if (
     Number(height) < 100 ||
-    Number(height) > 1920
+    Number(height) > maxHeight
   ) {
     alert(
-      "Korkeuden tulee olla välillä 100-1920 mm"
+      `Korkeuden tulee olla välillä 100-${maxHeight} mm`
     );
     return;
   }
 
   if (
     Number(width) < 195 ||
-    Number(width) > 1195
+    Number(width) > maxWidth
   ) {
     alert(
-      "Leveyden tulee olla välillä 195-1195 mm"
+      `Leveyden tulee olla välillä 195-${maxWidth} mm`
     );
     return;
   }
@@ -1083,21 +1238,21 @@ if (productGroup === "kalusteovet") {
 if (productGroup === "laminaattitasot") {
 
   if (
-    Number(height) < 300 ||
+    Number(height) < 200 ||
     Number(height) > 4100
   ) {
     alert(
-      "Pituuden tulee olla välillä 300-4100 mm"
+      "Pituuden tulee olla välillä 200-4100 mm"
     );
     return;
   }
 
   if (
-    Number(width) < 300 ||
+    Number(width) < 200 ||
     Number(width) > 1200
   ) {
     alert(
-      "Syvyyden tulee olla välillä 300-1200 mm"
+      "Syvyyden tulee olla välillä 200-1200 mm"
     );
     return;
   }
@@ -1156,6 +1311,44 @@ if (
   }
 }
 
+if (
+  selectedProduct?.requiresGrainDirection
+) {
+
+  const h = Number(height);
+  const w = Number(width);
+
+  if (
+    grainDirection === "pysty" &&
+    (
+      h >
+        selectedProduct.maxHeightVertical ||
+      w >
+        selectedProduct.maxWidthVertical
+    )
+  ) {
+    alert(
+      `Pystysyisellä ovella maksimikoko on ${selectedProduct.maxHeightVertical} x ${selectedProduct.maxWidthVertical} mm`
+    );
+    return;
+  }
+
+  if (
+    grainDirection === "vaaka" &&
+    (
+      h >
+        selectedProduct.maxHeightHorizontal ||
+      w >
+        selectedProduct.maxWidthHorizontal
+    )
+  ) {
+    alert(
+      `Vaakasyisellä levyllä maksimikorkeus on ${selectedProduct.maxHeightHorizontal} ja leveys ${selectedProduct.maxWidthHorizontal} mm`
+    );
+    return;
+  }
+}
+
   const item = {
     product,
     productGroup,
@@ -1172,6 +1365,8 @@ if (
     bottomEdge,
     backEdgeUpgrade,
     grainDirection,
+    requiresGrainDirection:
+    selectedProduct?.requiresGrainDirection,
     hingeDrilling,
     drillingType,
     bottomHinge,
@@ -1179,6 +1374,7 @@ if (
     extraHinges,
     thirdHinge,
     fourthHinge,
+    piecePrice,
     totalPrice,
     image:
   selectedCabinetColor?.image ||
@@ -1203,6 +1399,7 @@ if (
     line.backEdgeUpgrade === item.backEdgeUpgrade &&
     line.hingeDrilling === item.hingeDrilling &&
     line.drillingType === item.drillingType &&
+    line.grainDirection === item.grainDirection &&
     line.bottomHinge === item.bottomHinge &&
     line.topHinge === item.topHinge &&
     line.extraHinges === item.extraHinges &&
@@ -1213,16 +1410,30 @@ if (
 if (existingIndex >= 0) {
   const updatedLines = [...orderLines];
 
+  const newQuantity =
+    updatedLines[existingIndex].quantity +
+    item.quantity;
+
+  let newTotalPrice = 0;
+
+  for (let i = 1; i <= newQuantity; i++) {
+    let discount = 1;
+
+    if (i >= 6) {
+      discount = 0.93;
+    } else if (i >= 2) {
+      discount = 0.95;
+    }
+
+    newTotalPrice +=
+      item.piecePrice * discount;
+  }
+
   updatedLines[existingIndex] = {
     ...updatedLines[existingIndex],
-    quantity:
-      updatedLines[existingIndex].quantity +
-      item.quantity,
-    totalPrice:
-      updatedLines[existingIndex].totalPrice +
-      item.totalPrice,
+    quantity: newQuantity,
+    totalPrice: newTotalPrice,
   };
-
 
   setOrderLines(updatedLines);
 } else {
@@ -1244,23 +1455,11 @@ if (existingIndex >= 0) {
   setBottomEdge(false);
 }
 
-const countertopDeliveryFee = 69;
-
-const hasPackagingProducts = orderLines.some(
-  (item) =>
-    item.productGroup === "laminaattitasot" ||
-    item.productGroup === "välitilalevyt"
-);
-
-const deliveryCharge =
-  hasPackagingProducts ? countertopDeliveryFee : 0;
-
 const grandTotal =
   orderLines.reduce(
     (sum, item) => sum + item.totalPrice,
     0
   ) +
-  deliveryCharge +
   effectiveShippingPrice;
 
 const vat = grandTotal * 0.255;
@@ -1350,7 +1549,7 @@ item.productGroup === "purwckalusteet"
   ? `Syvyys: ${item.wcDepth} mm`
   : null,
 
-item.productGroup === "kalusteovet" &&
+item.requiresGrainDirection &&
 item.grainDirection
   ? `Syykuvion suunta: ${item.grainDirection}`
   : null,
@@ -1463,11 +1662,6 @@ Number(item.extraHinges) >= 2
 
 
     products: productsText,
-
-    countertopFeeText:
-    deliveryCharge > 0
-    ? `Tasojen & välitilojen käsittely- ja pakkauskulu: ${deliveryCharge.toFixed(2)} € alv0`
-    : "",
 
     shipping_text:
     deliveryConfirmed && shippingPrice > 0
@@ -1658,10 +1852,6 @@ Tilaa mittatarkat kalusteovet, kalustelevyt, välitilalevyt, laminaattitasot, ka
     fontWeight: "500",
   }}
 >
-  <option value="">
-    Valitse tuoteryhmä
-  </option>
-
   <option value="kalusteovet">
     Kalusteovet (3-7 työpäivää)
   </option>
@@ -1679,7 +1869,7 @@ Tilaa mittatarkat kalusteovet, kalustelevyt, välitilalevyt, laminaattitasot, ka
   </option>
 
   <option value="välitilalevyt">
-    Välitilalevyt (3-7pv)
+    Välitilalevyt (2-3 viikkoa)
   </option>
 
   <option value="purwckalusteet">
@@ -1822,7 +2012,26 @@ Tilaa mittatarkat kalusteovet, kalustelevyt, välitilalevyt, laminaattitasot, ka
     </select>
   </div>
 )}
-`
+
+{productGroup === "purwckalusteet" &&
+ cabinetColor === "Tammi" && (
+  <div
+    style={{
+      marginTop: "10px",
+      padding: "10px",
+      backgroundColor: "#f5f5f5",
+      borderRadius: "8px",
+      fontSize: "14px",
+      lineHeight: "1.4",
+    }}
+  >
+    Tammen värisissä kalusteissa ovien syysuunta on pysty ja
+    laatikon etusarjojen syysuunta on vaaka. Esimerkiksi
+    "PUR-hyllykomero" -tuotteessa oven syysuunta on pystysuuntainen ja 
+    "PUR-alakaappi laatikoilla" -tuotteessa laatikoiden etusarjojen syysuunta on vaakasuuntainen.
+  </div>
+)}
+
 {productGroup === "kalustehelat" && (
   <div
     style={{
@@ -2191,7 +2400,7 @@ alignItems: "end",
   </p>
 )}
 
-{product === "Hiekkatammi melamiini 16mm" && (
+{selectedProduct?.requiresGrainDirection && (
 <>
 <h3>Syykuvion suunta</h3>
  
@@ -2650,7 +2859,8 @@ alignItems: "end",
   )
 )}
 
-{item.grainDirection && (
+{item.requiresGrainDirection &&
+ item.grainDirection && (
   <p>
     Syykuvion suunta: {item.grainDirection}
   </p>
@@ -2791,12 +3001,6 @@ Poista
     .toFixed(2)} €
 </div>
 
-{deliveryCharge > 0 && (
-  <div>
-    Tasojen & välitilojen käsittely- ja pakkauskulu:{" "}
-    {deliveryCharge.toFixed(2)} €
-  </div>
-)}
 </div>
 
 <h2
@@ -3034,13 +3238,6 @@ Poista
         )
       ).toFixed(2)} €
     </div>
-
-    {deliveryCharge > 0 && (
-      <div>
-        Tasojen & välitilojen käsittely- ja pakkauskulu:{" "}
-        {deliveryCharge.toFixed(2)} €
-      </div>
-    )}
 
     {deliveryConfirmed && shippingPrice > 0 && (
   <div>
