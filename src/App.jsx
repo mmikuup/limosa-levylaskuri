@@ -490,18 +490,22 @@ laminaattitasot: [
 välitilalevyt: [
 {
   name: "Matta musta",
-  shortName: "Matta musta 4,4mm",
+  shortName: "Matta musta 3mm",
   pricingType: "piece",
   piecePrice600: 165,
   piecePrice1220: 260,
+  maxHeight: 650,
+  maxWidth: 3660,
   image: välitilamattamusta,
 },
 {
   name: "Tammi",
-  shortName: "Tammi 4,4mm",
+  shortName: "Tammi 3mm",
   pricingType: "piece",
   piecePrice600: 165,
   piecePrice1220: 260,
+  maxHeight: 650,
+  maxWidth: 3660,
   image: välitilatammi,
 },
 {
@@ -510,6 +514,8 @@ välitilalevyt: [
   pricingType: "piece",
   piecePrice600: 165,
   piecePrice1220: 260,
+  maxHeight: 1200,
+  maxWidth: 3050,
   image: kultatammi,
 },
 {
@@ -518,6 +524,8 @@ välitilalevyt: [
   pricingType: "piece",
   piecePrice600: 165,
   piecePrice1220: 260,
+  maxHeight: 1200,
+  maxWidth: 3050,
   image: mustaoxidoitu,
 },
 {
@@ -526,6 +534,8 @@ välitilalevyt: [
   pricingType: "piece",
   piecePrice600: 165,
   piecePrice1220: 260,
+  maxHeight: 1200,
+  maxWidth: 3050,
   image: välitilabetoni,
 },
 {
@@ -534,6 +544,8 @@ välitilalevyt: [
   pricingType: "piece",
   piecePrice600: 165,
   piecePrice1220: 260,
+  maxHeight: 1200,
+  maxWidth: 3050,
   image: välitilavaaleakivi,
 },
 {
@@ -542,6 +554,8 @@ välitilalevyt: [
   pricingType: "piece",
   piecePrice600: 165,
   piecePrice1220: 260,
+  maxHeight: 1200,
+  maxWidth: 3050,
   image: välitilaharmaakivi,
 },
 {
@@ -550,6 +564,8 @@ välitilalevyt: [
   pricingType: "piece",
   piecePrice600: 165,
   piecePrice1220: 260,
+  maxHeight: 1200,
+  maxWidth: 3050,
   image: välitilagalaxi,
 },
 {
@@ -558,6 +574,8 @@ välitilalevyt: [
   pricingType: "piece",
   piecePrice600: 165,
   piecePrice1220: 260,
+  maxHeight: 1200,
+  maxWidth: 3050,
   image: mustapronssi,
 },
 {
@@ -566,6 +584,8 @@ välitilalevyt: [
   pricingType: "piece",
   piecePrice600: 165,
   piecePrice1220: 260,
+  maxHeight: 1200,
+  maxWidth: 3050,
   image: calacatta,
 },
 {
@@ -574,6 +594,8 @@ välitilalevyt: [
   pricingType: "piece",
   piecePrice600: 165,
   piecePrice1220: 260,
+  maxHeight: 1200,
+  maxWidth: 3050,
   image: portobello,
 },
 {
@@ -582,6 +604,8 @@ välitilalevyt: [
   pricingType: "piece",
   piecePrice600: 165,
   piecePrice1220: 260,
+  maxHeight: 1200,
+  maxWidth: 3050,
   image: perlino,
 },
 {
@@ -590,6 +614,8 @@ välitilalevyt: [
   pricingType: "piece",
   piecePrice600: 165,
   piecePrice1220: 260,
+  maxHeight: 1200,
+  maxWidth: 3050,
   image: stonehaven,
 },
 ]
@@ -910,10 +936,19 @@ if (lengthMeters <= 1) {
   selectedProduct?.pricingType === "piece"
 ) {
 
-  boardPrice =
-    Number(height) <= 600
-      ? selectedProduct.piecePrice600
-      : selectedProduct.piecePrice1220;
+  const specialSplashbacks = [
+  "Matta musta",
+  "Tammi",
+];
+
+const isSpecialSplashback =
+  specialSplashbacks.includes(selectedProduct.name);
+
+boardPrice = isSpecialSplashback
+  ? selectedProduct.piecePrice600
+  : Number(height) <= 600
+    ? selectedProduct.piecePrice600
+    : selectedProduct.piecePrice1220;
 
 } else {
 
@@ -1286,22 +1321,28 @@ if (productGroup === "laminaattitasot") {
 }
 if (productGroup === "välitilalevyt") {
 
+  const maxHeight =
+    selectedProduct?.maxHeight || 1220;
+
+  const maxWidth =
+    selectedProduct?.maxWidth || 3050;
+
   if (
     Number(height) < 150 ||
-    Number(height) > 1220
+    Number(height) > maxHeight
   ) {
     alert(
-      "Korkeuden tulee olla välillä 150-1220 mm"
+      `Korkeuden tulee olla välillä 150-${maxHeight} mm`
     );
     return;
   }
 
   if (
     Number(width) < 300 ||
-    Number(width) > 3050
+    Number(width) > maxWidth
   ) {
     alert(
-      "Leveyden tulee olla välillä 300-3050 mm"
+      `Leveyden tulee olla välillä 300-${maxWidth} mm`
     );
     return;
   }
