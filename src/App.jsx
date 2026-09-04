@@ -352,7 +352,7 @@ purwckalusteet: [
 ],
 laminaattitasot: [
 {
-  name: "Viti valkoinen",
+  name: "Viti valkoinen 30mm sr",
   shortName: "Viti valkoinen 30mm",
   pricingType: "countertop",
   price600: 114,
@@ -361,7 +361,7 @@ laminaattitasot: [
   image: vitivalkoinen,
 },
 {
-  name: "Matta musta",
+  name: "Matta musta 30mm sr",
   shortName: "Matta musta 30mm",
   pricingType: "countertop",
   price600: 135,
@@ -370,7 +370,7 @@ laminaattitasot: [
   image: mattamusta,
 },
 {
-  name: "Tammi",
+  name: "Tammi 30mm sr",
   shortName: "Tammi 30mm",
   pricingType: "countertop",
   price600: 135,
@@ -379,7 +379,7 @@ laminaattitasot: [
   image: tammi,
 },
 {
-  name: "Kultatammi",
+  name: "Kultatammi 30mm sr",
   shortName: "Kultatammi 30mm",
   pricingType: "countertop",
   price600: 114,
@@ -388,7 +388,7 @@ laminaattitasot: [
   image: kultatammi,
 },
 {
-  name: "Vaalea pähkinä",
+  name: "Vaalea pähkinä 30mm sr",
   shortName: "Vaalea pähkinä 30mm",
   pricingType: "countertop",
   price600: 114,
@@ -397,7 +397,7 @@ laminaattitasot: [
   image: vaaleapähkinä,
 },
 {
-  name: "Musta oxidoitu",
+  name: "Musta oxidoitu 30mm sr",
   shortName: "Musta oxidoitu 30mm",
   pricingType: "countertop",
   price600: 114,
@@ -406,7 +406,7 @@ laminaattitasot: [
   image: mustaoxidoitu,
 },
 {
-  name: "Betoni",
+  name: "Betoni 30mm sr",
   shortName: "Betoni 30mm",
   pricingType: "countertop",
   price600: 114,
@@ -415,7 +415,7 @@ laminaattitasot: [
   image: betoni,
 },
 {
-  name: "Vaalea kivi",
+  name: "Vaalea kivi 30mm sr",
   shortName: "Vaalea kivi 30mm",
   pricingType: "countertop",
   price600: 114,
@@ -424,7 +424,7 @@ laminaattitasot: [
   image: vaaleakivi,
 },
 {
-  name: "Harmaa kivi",
+  name: "Harmaa kivi 30mm sr",
   shortName: "Harmaa kivi 30mm",
   pricingType: "countertop",
   price600: 114,
@@ -433,7 +433,7 @@ laminaattitasot: [
   image: harmaakivi,
 },
 {
-  name: "Galaxi",
+  name: "Galaxi 30mm sr",
   shortName: "Galaxi 30mm",
   pricingType: "countertop",
   price600: 114,
@@ -442,7 +442,7 @@ laminaattitasot: [
   image: galaxi,
 },
 {
-  name: "Musta pronssi",
+  name: "Musta pronssi 30mm sr",
   shortName: "Musta pronssi 30mm",
   pricingType: "countertop",
   price600: 114,
@@ -451,7 +451,7 @@ laminaattitasot: [
   image: mustapronssi,
 },
 {
-  name: "Calacatta",
+  name: "Calacatta 30mm sr",
   shortName: "Calacatta 30mm",
   pricingType: "countertop",
   price600: 114,
@@ -460,7 +460,7 @@ laminaattitasot: [
   image: calacatta,
 },
 {
-  name: "Portobello",
+  name: "Portobello 30mm sr",
   shortName: "Portobello 30mm",
   pricingType: "countertop",
   price600: 114,
@@ -469,7 +469,7 @@ laminaattitasot: [
   image: portobello,
 },
 {
-  name: "Perlino",
+  name: "Perlino 30mm sr",
   shortName: "Perlino 30mm",
   pricingType: "countertop",
   price600: 114,
@@ -478,7 +478,7 @@ laminaattitasot: [
   image: perlino,
 },
 {
-  name: "Stonehaven",
+  name: "Stonehaven 30mm sr",
   shortName: "Stonehaven 30mm",
   pricingType: "countertop",
   price600: 114,
@@ -489,7 +489,7 @@ laminaattitasot: [
 ],
 välitilalevyt: [
 {
-  name: "Matta musta",
+  name: "Matta musta 3mm",
   shortName: "Matta musta 3mm",
   pricingType: "piece",
   piecePrice600: 165,
@@ -499,7 +499,7 @@ välitilalevyt: [
   image: välitilamattamusta,
 },
 {
-  name: "Tammi",
+  name: "Tammi 3mm",
   shortName: "Tammi 3mm",
   pricingType: "piece",
   piecePrice600: 165,
@@ -509,7 +509,7 @@ välitilalevyt: [
   image: välitilatammi,
 },
 {
-  name: "Kultatammi",
+  name: "Kultatammi 4,4mm",
   shortName: "Kultatammi 4,4mm",
   pricingType: "piece",
   piecePrice600: 165,
@@ -519,7 +519,7 @@ välitilalevyt: [
   image: kultatammi,
 },
 {
-  name: "Musta oxidoitu",
+  name: "Musta oxidoitu 4,4mm",
   shortName: "Musta oxidoitu 4,4mm",
   pricingType: "piece",
   piecePrice600: 165,
@@ -529,7 +529,7 @@ välitilalevyt: [
   image: mustaoxidoitu,
 },
 {
-  name: "Betoni",
+  name: "Betoni 4,4mm",
   shortName: "Betoni 4,4mm",
   pricingType: "piece",
   piecePrice600: 165,
@@ -539,7 +539,7 @@ välitilalevyt: [
   image: välitilabetoni,
 },
 {
-  name: "Vaalea kivi",
+  name: "Vaalea kivi 4,4mm",
   shortName: "Vaalea kivi 4,4mm",
   pricingType: "piece",
   piecePrice600: 165,
@@ -549,7 +549,7 @@ välitilalevyt: [
   image: välitilavaaleakivi,
 },
 {
-  name: "Harmaa kivi",
+  name: "Harmaa kivi 4,4mm",
   shortName: "Harmaa kivi 4,4mm",
   pricingType: "piece",
   piecePrice600: 165,
@@ -559,7 +559,7 @@ välitilalevyt: [
   image: välitilaharmaakivi,
 },
 {
-  name: "Galaxi",
+  name: "Galaxi 4,4mm",
   shortName: "Galaxi 4,4mm",
   pricingType: "piece",
   piecePrice600: 165,
@@ -569,7 +569,7 @@ välitilalevyt: [
   image: välitilagalaxi,
 },
 {
-  name: "Musta pronssi",
+  name: "Musta pronssi 4,4mm",
   shortName: "Musta pronssi 4,4mm",
   pricingType: "piece",
   piecePrice600: 165,
@@ -579,7 +579,7 @@ välitilalevyt: [
   image: mustapronssi,
 },
 {
-  name: "Calacatta",
+  name: "Calacatta 4,4mm",
   shortName: "Calacatta 4,4mm",
   pricingType: "piece",
   piecePrice600: 165,
@@ -589,7 +589,7 @@ välitilalevyt: [
   image: calacatta,
 },
 {
-  name: "Portobello",
+  name: "Portobello 4,4mm",
   shortName: "Portobello 4,4mm",
   pricingType: "piece",
   piecePrice600: 165,
@@ -599,7 +599,7 @@ välitilalevyt: [
   image: portobello,
 },
 {
-  name: "Perlino",
+  name: "Perlino 4,4mm",
   shortName: "Perlino 4,4mm",
   pricingType: "piece",
   piecePrice600: 165,
@@ -609,7 +609,7 @@ välitilalevyt: [
   image: perlino,
 },
 {
-  name: "Stonehaven",
+  name: "Stonehaven 4,4mm",
   shortName: "Stonehaven 4,4mm",
   pricingType: "piece",
   piecePrice600: 165,
