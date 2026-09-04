@@ -2483,6 +2483,23 @@ alignItems: "end",
   </p>
 )}
 
+{productGroup === "kalusteovet" && (
+  
+    <p
+      style={{
+        fontSize: "clamp(14px, 1.8vw, 16px)",
+        color: "#666",
+        textAlign: "center",
+        lineHeight: "1.5",
+        marginTop: "8px",
+        marginBottom: "10px",
+      }}
+    >
+      *Laatikon etusarjat toimitetaan poraamattomina, remonttikohteessa
+      vanhat etusarjat saa yleensä hyödynnettyä poraus-sabluunana. 
+    </p>
+)}
+
 {selectedProduct?.requiresGrainDirection && (
 <>
 <h3>Syykuvion suunta</h3>
@@ -2523,6 +2540,7 @@ alignItems: "end",
 </div>
 </>
 )}
+
 
 {productGroup === "kalusteovet" && (
   <>
@@ -3168,6 +3186,23 @@ Poista
     boxSizing: "border-box",
   }}
 />
+
+<p
+      style={{
+        fontSize: "clamp(14px, 1.8vw, 16px)",
+        color: "#666",
+        textAlign: "left",
+        lineHeight: "1.5",
+        marginTop: "8px",
+        marginBottom: "10px",
+      }}
+    >
+      Yritysasiakas: Ilmoittakaa lisätietokentässä yrityksen 
+      Y-tunnus sekä muut laskutusta varten tarvittavat tiedot. 
+      Jos tilaukselle tarvitaan esimerkiksi työmaan nimi, 
+      viite tai muu erillinen merkintä, voitte lisätä sen samaan kenttään.
+    </p>
+
 <div>
   <h2
   style={{
