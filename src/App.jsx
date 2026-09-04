@@ -937,8 +937,8 @@ if (lengthMeters <= 1) {
 ) {
 
   const specialSplashbacks = [
-  "Matta musta",
-  "Tammi",
+  "Matta musta 3mm",
+  "Tammi 3mm",
 ];
 
 const isSpecialSplashback =
